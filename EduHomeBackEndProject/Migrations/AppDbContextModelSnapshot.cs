@@ -117,7 +117,6 @@ namespace EduHomeBackEndProject.Migrations
                         .HasMaxLength(70);
 
                     b.Property<string>("CourseImage")
-                        .IsRequired()
                         .HasColumnType("nvarchar(70)")
                         .HasMaxLength(70);
 
@@ -140,6 +139,9 @@ namespace EduHomeBackEndProject.Migrations
                         .HasColumnType("nvarchar(70)")
                         .HasMaxLength(70);
 
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
@@ -147,58 +149,29 @@ namespace EduHomeBackEndProject.Migrations
                     b.ToTable("Courses");
                 });
 
-            modelBuilder.Entity("EduHomeBackEndProject.Models.CourseFeauture", b =>
+            modelBuilder.Entity("EduHomeBackEndProject.Models.CourseFeature", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Assesments")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(25)")
-                        .HasMaxLength(25);
-
-                    b.Property<string>("ClassDuration")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(25)")
-                        .HasMaxLength(25);
-
                     b.Property<int>("CourseId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Duration")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(25)")
-                        .HasMaxLength(25);
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
-                    b.Property<string>("Language")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(25)")
-                        .HasMaxLength(25);
-
-                    b.Property<string>("Price")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(25)")
-                        .HasMaxLength(25);
-
-                    b.Property<string>("SkillLevel")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(25)")
-                        .HasMaxLength(25);
-
-                    b.Property<DateTime>("StartTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("StudentCount")
-                        .HasColumnType("int");
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CourseId")
-                        .IsUnique();
+                    b.HasIndex("CourseId");
 
-                    b.ToTable("CourseFeautures");
+                    b.ToTable("CourseFeatures");
                 });
 
             modelBuilder.Entity("EduHomeBackEndProject.Models.CourseTag", b =>
@@ -238,19 +211,16 @@ namespace EduHomeBackEndProject.Migrations
                         .HasColumnType("nvarchar(1000)")
                         .HasMaxLength(1000);
 
-                    b.Property<string>("FinishTime")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(10)")
+                    b.Property<DateTime>("FinishTime")
+                        .HasColumnType("datetime2")
                         .HasMaxLength(10);
 
                     b.Property<string>("Image")
-                        .IsRequired()
                         .HasColumnType("nvarchar(70)")
                         .HasMaxLength(70);
 
-                    b.Property<string>("StartTime")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(10)")
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("datetime2")
                         .HasMaxLength(10);
 
                     b.Property<string>("Title")
@@ -320,24 +290,19 @@ namespace EduHomeBackEndProject.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Icon")
-                        .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
                     b.Property<string>("IconUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(120)")
                         .HasMaxLength(120);
 
                     b.Property<int>("SettingId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SettingsId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("SettingsId");
+                    b.HasIndex("SettingId");
 
                     b.ToTable("FooterSocialMedias");
                 });
@@ -354,7 +319,6 @@ namespace EduHomeBackEndProject.Migrations
                         .HasMaxLength(200);
 
                     b.Property<string>("Image")
-                        .IsRequired()
                         .HasColumnType("nvarchar(70)")
                         .HasMaxLength(70);
 
@@ -402,10 +366,6 @@ namespace EduHomeBackEndProject.Migrations
                         .HasColumnType("nvarchar(350)")
                         .HasMaxLength(350);
 
-                    b.Property<string>("VideoUrl")
-                        .HasColumnType("nvarchar(250)")
-                        .HasMaxLength(250);
-
                     b.HasKey("Id");
 
                     b.ToTable("NoticeBoards");
@@ -428,7 +388,7 @@ namespace EduHomeBackEndProject.Migrations
                     b.ToTable("Positions");
                 });
 
-            modelBuilder.Entity("EduHomeBackEndProject.Models.Settings", b =>
+            modelBuilder.Entity("EduHomeBackEndProject.Models.Setting", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -460,12 +420,10 @@ namespace EduHomeBackEndProject.Migrations
                         .HasMaxLength(500);
 
                     b.Property<string>("FooterLogo")
-                        .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
                     b.Property<string>("HeaderLogo")
-                        .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
@@ -482,9 +440,12 @@ namespace EduHomeBackEndProject.Migrations
                         .HasMaxLength(50);
 
                     b.Property<string>("SearchIcon")
-                        .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
+
+                    b.Property<string>("VideoTourUrl")
+                        .HasColumnType("nvarchar(250)")
+                        .HasMaxLength(250);
 
                     b.Property<string>("WebAddress")
                         .HasColumnType("nvarchar(50)")
@@ -523,21 +484,19 @@ namespace EduHomeBackEndProject.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("SocialIcon")
-                        .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
-
-                    b.Property<int?>("SocialMediaId")
-                        .HasColumnType("int");
 
                     b.Property<string>("SocialUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
+
+                    b.Property<int>("TeacherId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SocialMediaId");
+                    b.HasIndex("TeacherId");
 
                     b.ToTable("SocialMedias");
                 });
@@ -550,7 +509,6 @@ namespace EduHomeBackEndProject.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Image")
-                        .IsRequired()
                         .HasColumnType("nvarchar(70)")
                         .HasMaxLength(70);
 
@@ -599,7 +557,6 @@ namespace EduHomeBackEndProject.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Image")
-                        .IsRequired()
                         .HasColumnType("nvarchar(70)")
                         .HasMaxLength(70);
 
@@ -667,7 +624,6 @@ namespace EduHomeBackEndProject.Migrations
                         .HasMaxLength(70);
 
                     b.Property<string>("Image")
-                        .IsRequired()
                         .HasColumnType("nvarchar(150)")
                         .HasMaxLength(150);
 
@@ -782,28 +738,6 @@ namespace EduHomeBackEndProject.Migrations
                     b.ToTable("TeacherSkills");
                 });
 
-            modelBuilder.Entity("EduHomeBackEndProject.Models.TeacherSocial", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("SocialMediaId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TeacherId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SocialMediaId");
-
-                    b.HasIndex("TeacherId");
-
-                    b.ToTable("TeacherSocials");
-                });
-
             modelBuilder.Entity("EduHomeBackEndProject.Models.Comment", b =>
                 {
                     b.HasOne("EduHomeBackEndProject.Models.Blog", "Blog")
@@ -834,11 +768,11 @@ namespace EduHomeBackEndProject.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("EduHomeBackEndProject.Models.CourseFeauture", b =>
+            modelBuilder.Entity("EduHomeBackEndProject.Models.CourseFeature", b =>
                 {
                     b.HasOne("EduHomeBackEndProject.Models.Course", "Course")
-                        .WithOne("CourseFeauture")
-                        .HasForeignKey("EduHomeBackEndProject.Models.CourseFeauture", "CourseId")
+                        .WithMany("CourseFeatures")
+                        .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -875,16 +809,20 @@ namespace EduHomeBackEndProject.Migrations
 
             modelBuilder.Entity("EduHomeBackEndProject.Models.FooterSocialMedia", b =>
                 {
-                    b.HasOne("EduHomeBackEndProject.Models.Settings", "Settings")
+                    b.HasOne("EduHomeBackEndProject.Models.Setting", "Setting")
                         .WithMany("FooterSocialMedias")
-                        .HasForeignKey("SettingsId");
+                        .HasForeignKey("SettingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("EduHomeBackEndProject.Models.SocialMedia", b =>
                 {
-                    b.HasOne("EduHomeBackEndProject.Models.SocialMedia", null)
+                    b.HasOne("EduHomeBackEndProject.Models.Teacher", "Teacher")
                         .WithMany("SocialMedias")
-                        .HasForeignKey("SocialMediaId");
+                        .HasForeignKey("TeacherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("EduHomeBackEndProject.Models.SpeakerPosition", b =>
@@ -966,21 +904,6 @@ namespace EduHomeBackEndProject.Migrations
 
                     b.HasOne("EduHomeBackEndProject.Models.Teacher", "Teacher")
                         .WithMany("TeacherSkills")
-                        .HasForeignKey("TeacherId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("EduHomeBackEndProject.Models.TeacherSocial", b =>
-                {
-                    b.HasOne("EduHomeBackEndProject.Models.SocialMedia", "SocialMedia")
-                        .WithMany()
-                        .HasForeignKey("SocialMediaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EduHomeBackEndProject.Models.Teacher", "Teacher")
-                        .WithMany("TeacherSocials")
                         .HasForeignKey("TeacherId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

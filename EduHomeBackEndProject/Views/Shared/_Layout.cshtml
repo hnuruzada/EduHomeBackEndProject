@@ -1,4 +1,6 @@
-﻿<!doctype html>
+﻿@inject EduHomeBackEndProject.Services.LayoutService layoutService
+
+<!doctype html>
 <html class="no-js" lang="en">
     
 <!-- Mirrored from demo.devitems.com/eduhome/index-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 21 Jun 2020 19:37:50 GMT -->
@@ -38,7 +40,7 @@
 		            <div class="row">
 		                <div class="col-md-8 col-sm-8 col-xs-12">
 		                    <div class="header-top-left">
-		                        <p>HAVE ANY QUESTION ?  +880 5698  598  6587</p>
+		                        <p>HAVE ANY QUESTION ?  </p>
 		                    </div>
 		                </div>
 		                <div class="col-md-4 col-sm-4 col-xs-12">
@@ -57,7 +59,7 @@
 					<div class="row">
 						<div class="col-md-3 col-sm-3 col-xs-6">
 							<div class="logo">
-								<a asp-controller="home" asp-action="index"><img src="~/Assets/img/logo/logo2.png" alt="eduhome" /></a>
+								<a asp-controller="home" asp-action="index"><img src="~/Assets/img/logo/@layoutService.GetSettingData().HeaderLogo" alt="eduhome" /></a>
 							</div>
 						</div>
 						<div class="col-md-9 col-sm-9 col-xs-6">

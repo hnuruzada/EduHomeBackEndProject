@@ -12,7 +12,7 @@ namespace EduHomeBackEndProject.Models
         [Required]
         [StringLength(maximumLength: 30)]
         public string Surname { get; set; }
-        [Required]
+        
         [StringLength(maximumLength: 150)]
         public string Image { get; set; }
         [Required]
@@ -34,7 +34,7 @@ namespace EduHomeBackEndProject.Models
         public List<TeacherHobbie> TeacherHobbies { get; set; }
         public List<TeacherFaculty> TeacherFaculties { get; set; }
         public List<TeacherSkill> TeacherSkills { get; set; }
-        public List<TeacherSocial> TeacherSocials { get; set; }
+        public List<SocialMedia> SocialMedias { get; set; }
         public List<TeacherPosition> TeacherPositions { get; set; }
     }
 }

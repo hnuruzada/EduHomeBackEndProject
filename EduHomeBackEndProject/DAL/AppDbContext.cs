@@ -10,12 +10,12 @@ namespace EduHomeBackEndProject.DAL
 
         }
         public DbSet<HeaderSlider> HeaderSliders{ get; set; }
-        public DbSet<Settings> Settings { get; set; }
+        public DbSet<Setting> Settings { get; set; }
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<CourseFeature> CourseFeatures { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Course> Courses { get; set; }
-        public DbSet<CourseFeauture> CourseFeautures { get; set; }
         public DbSet<CourseTag> CourseTags { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<EventSpeaker> EventSpeakers { get; set; }
@@ -35,8 +35,8 @@ namespace EduHomeBackEndProject.DAL
         public DbSet<TeacherHobbie> TeacherHobbies { get; set; }
         public DbSet<TeacherPosition> TeacherPositions { get; set; }
         public DbSet<TeacherSkill> TeacherSkills { get; set; }
-        public DbSet<TeacherSocial> TeacherSocials { get; set; }
-        
+
+
 
 
 

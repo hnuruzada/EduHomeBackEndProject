@@ -12,7 +12,6 @@ namespace EduHomeBackEndProject.Models
         [StringLength(maximumLength: 350)]
         public string Description { get; set; }
         
-        [StringLength(maximumLength: 250)]
-        public string VideoUrl { get; set; }
+        
     }
 }

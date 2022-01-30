@@ -7,7 +7,7 @@ namespace EduHomeBackEndProject.Models
     public class Event
     {
         public int Id { get; set; }
-        [Required]
+        
         [StringLength(maximumLength:70)]
         public string Image { get; set; }
         [Required]
@@ -22,11 +22,11 @@ namespace EduHomeBackEndProject.Models
         [Required]
         [StringLength(maximumLength: 10)]
 
-        public string StartTime { get; set; }
+        public DateTime StartTime { get; set; }
         [Required]
         [StringLength(maximumLength: 10)]
 
-        public string FinishTime { get; set; }
+        public DateTime FinishTime { get; set; }
         [Required]
         [StringLength(maximumLength: 100)]
         public string Venue { get; set; }

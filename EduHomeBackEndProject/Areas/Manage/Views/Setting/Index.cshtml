@@ -1,0 +1,74 @@
+﻿@model Setting
+@{
+    ViewData["Title"] = "Index";
+}
+@section Css{
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+}
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Settings</h4>
+                <div class="table-responsive pt-3">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                              
+                                <th>
+                                    Header Logo
+                                </th>
+                                
+                                <th>
+                                    Phone Number1
+                                </th>
+                                <th>
+                                    Phone Number2
+                                </th>
+                                
+                                <th>
+                                    Mail
+                                </th>
+                               
+                                
+                                <th>
+                                    Footer Description
+                                </th>
+                                <th>
+                                    Web Address
+                                </th>
+                                
+                                <th>
+                                    Settings
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr>
+                               
+                                <td>
+                                    <img src="~/Assets/img/logo/@Model.FooterLogo" style="width:100px;height:50px;border-radius:0;" />
+                                </td>
+                                
+                                <td>@Model.PhoneNumber1</td>
+                                <td>@Model.PhoneNumber2</td>
+                                
+                                <td>@Model.Mail</td>
+    
+                                <td>@Model.FooterDescription.Substring(0,25)...</td>
+                                <td>@Model.WebAddress</td>
+                                <td>
+                                    <a asp-action="edit" asp-route-id="@Model.Id" class="btn btn-warning">
+                                        <i class="fas fa-edit" style="color:black;"></i>
+                                    </a>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

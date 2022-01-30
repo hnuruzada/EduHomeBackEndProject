@@ -14,7 +14,7 @@ namespace EduHomeBackEndProject.Models
         [Required]
         [StringLength(maximumLength: 350)]
         public string Info { get; set; }
-        [Required]
+        
         [StringLength(maximumLength: 70)]
         public string Image { get; set; }
         public int PositionId { get; set; }

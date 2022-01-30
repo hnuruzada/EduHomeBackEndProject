@@ -1,0 +1,113 @@
+﻿
+@using EduHomeBackEndProject.Models
+@model Course
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Manage/Views/Shared/_Layout.cshtml";
+    List<Category> categories = (List<Category>)ViewBag.Categories;
+    List<Teacher> teachers = (List<Teacher>)ViewBag.Teachers;
+    List<Tag> tags = (List<Tag>)ViewBag.Tags;
+}
+
+
+<div class="container-fluid">
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="@Model.Price">Price</label>
+            <input type="text" asp-for="@Model.Price" class="form-control" id="Price" placeholder="Price">
+            <span asp-validation-for="@Model.Price" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.CourseName">Context</label>
+            <textarea asp-for="@Model.CourseName" class="form-control" id="Subtitle" rows="3"></textarea>
+            <span asp-validation-for="@Model.CourseName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.AboutCourseInfo">About</label>
+            <input asp-for="@Model.AboutCourseInfo" class="form-control col-md-2" rows="3">
+            <span asp-validation-for="@Model.AboutCourseInfo" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.HowToApplyInfo">HowToApply</label>
+            <input asp-for="@Model.HowToApplyInfo" class="form-control col-md-2" rows="3">
+            <span asp-validation-for="@Model.HowToApplyInfo" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.CertificationInfo">Certification</label>
+            <input asp-for="@Model.CertificationInfo" class="form-control col-md-2" rows="3">
+            <span asp-validation-for="@Model.CertificationInfo" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-3">
+            <label asp-for="@Model.CategoryId">Category</label>
+            <select class="form-control" asp-for="@Model.CategoryId" asp-items="@(new SelectList(categories,"Id","Name"))">
+            </select>
+        </div>
+        
+        <div class="form-group col-md-3">
+            <label asp-for="@Model.TagIds">Tags</label>
+            <select class="form-control" asp-for="@Model.TagIds" asp-items="@(new SelectList(tags,"Id","Name"))">
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.CourseImgFile">ImageFile</label>
+            <input asp-for="@Model.CourseImgFile" class="form-control col-md-2" rows="3">
+            <span asp-validation-for="@Model.CourseImgFile" class="text-danger"></span>
+        </div>
+
+
+
+        <div class="form-row col-12" id="features">
+            <div class="form-group">
+                <label for="featureName">Feature name</label>
+                <input name="Features[0].Name" type="text" />
+                <span class="text-danger"></span>
+
+                <label for="featureValue"> Feature value</label>
+                <input name="Features[0].Value" type="text" />
+                <span class="text-danger"></span>
+                <span><i class="fas fa-minus delete-skill"> </i></span>
+            </div>
+        </div>
+        <div class="form-row justify-content-center">
+            <div class="form-group">
+                <button data-nextIndex="1" class="add-feature btn btn-primary">+</button>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+</div>
+
+
+
+@section Scripts{
+    <script>
+    $(document).ready(function () {
+        $(document).on("click", ".add-feature", function (e) {
+            e.preventDefault();
+            var nextIndex = $(this).attr("data-nextIndex");
+            var inputGroup = ` <div class="form-group col-12" data-index="0">
+                <label for="featureName">Feature name</label>
+                <input name="Features[`+ nextIndex+`].Name" type="text" />
+                <span class="text-danger"></span>
+                <label for="featureValue"> Feature value</label>
+                <input name="Features[`+ nextIndex+`].Value" type="text" />
+                <span class="text-danger"></span>
+                <span><i class="fas fa-minus delete-feature"> </i></span>
+            </div>`
+            $("#features").append($(inputGroup))
+            nextIndex = +nextIndex + 1;
+            console.log(nextIndex)
+            $(this).attr("data-nextIndex", nextIndex)
+        })
+        $(document).on("click", ".delete-feature", function (e) {
+            e.preventDefault();
+            console.log("test");
+            $(this).parents(".form-group").empty();
+        })
+    })
+    </script>
+}
+

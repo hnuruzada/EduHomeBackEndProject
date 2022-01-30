@@ -6,7 +6,7 @@ namespace EduHomeBackEndProject.Models
     public class Speaker
     {
         public int Id { get; set; }
-        [Required]
+        
         [StringLength(maximumLength:70)]
         public string Image { get; set; }
         [Required]

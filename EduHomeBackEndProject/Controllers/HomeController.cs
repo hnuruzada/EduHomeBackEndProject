@@ -23,7 +23,8 @@ namespace EduHomeBackEndProject.Controllers
         {
             HomeVM homeVM = new HomeVM()
             {
-               HeaderSliders = _context.HeaderSliders.OrderBy(x => x.Order).ToList(),
+                HeaderSliders = _context.HeaderSliders.OrderBy(x => x.Order).ToList(),
+                //Setting = _context.Settings.FirstOrDefault(),
             };
 
 

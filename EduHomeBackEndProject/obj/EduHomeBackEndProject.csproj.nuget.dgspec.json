@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Hesen\\Desktop\\EduHomeBackEndProject\\EduHomeBackEndProject.csproj": {}
+    "C:\\Users\\Hesen\\Desktop\\BackProject\\EduHomeBackEndProject\\EduHomeBackEndProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Hesen\\Desktop\\EduHomeBackEndProject\\EduHomeBackEndProject.csproj": {
+    "C:\\Users\\Hesen\\Desktop\\BackProject\\EduHomeBackEndProject\\EduHomeBackEndProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Hesen\\Desktop\\EduHomeBackEndProject\\EduHomeBackEndProject.csproj",
+        "projectUniqueName": "C:\\Users\\Hesen\\Desktop\\BackProject\\EduHomeBackEndProject\\EduHomeBackEndProject.csproj",
         "projectName": "EduHomeBackEndProject",
-        "projectPath": "C:\\Users\\Hesen\\Desktop\\EduHomeBackEndProject\\EduHomeBackEndProject.csproj",
+        "projectPath": "C:\\Users\\Hesen\\Desktop\\BackProject\\EduHomeBackEndProject\\EduHomeBackEndProject.csproj",
         "packagesPath": "C:\\Users\\Hesen\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Hesen\\Desktop\\EduHomeBackEndProject\\obj\\",
+        "outputPath": "C:\\Users\\Hesen\\Desktop\\BackProject\\EduHomeBackEndProject\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Hesen\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -57,6 +57,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[3.1.5, )"
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.14.1, )"
             }
           },
           "imports": [

@@ -1,0 +1,117 @@
+﻿@model Setting
+@{
+    ViewData["Title"] = "Edit";
+}
+
+                      
+<div style="background-color:gainsboro" class="container">
+    <div class="card-body row">
+@*        <div class="text text-danger" asp-validation-summary="ModelOnly"></div>
+*@        <form method="post" class="forms-sample" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-6" margin-bottom:40px; ">
+                    <label style="margin-bottom:10px;  font-size:20px;" font-size:20px;" asp-for="@Model.HeaderLogoFile">Header Logo</label>
+                    <input asp-for="@Model.HeaderLogoFile" accept="image/*" class="form-control">
+                    <span class="mt-2 text text-danger" asp-validation-for="@Model.HeaderLogoFile"></span>
+                    <p style="margin-top:15px;">Exsist Logo</p>
+                    <img style="margin-top:15px; display:block;" width="200" src="~/Assets/img/logo/@Model.HeaderLogo" />
+                </div>
+
+                <div class="col-md-6" margin-bottom:40px; ">
+                    <label style="margin-bottom:10px;  font-size:20px;" font-size:20px;" asp-for="@Model.FooterLogoFile">Footor logo Logo</label>
+                    <input asp-for="@Model.FooterLogoFile" accept="image/*" class="form-control">
+                    <span class="mt-2 text text-danger" asp-validation-for="@Model.FooterLogoFile"></span>
+                    <p style="margin-top:15px;">Exsist Footor Logo</p>
+                    <img style="margin-top:15px; display:block;" width="200" src="~/assets/img/logo/@Model.FooterLogo" />
+                </div>
+            </div>
+            <div style="margin-bottom:20px; margin-top:20px;" class="col-md-6">
+                <label style="margin-bottom:10px;  font-size:20px;" font-size:20px;" asp-for="@Model.AboutImgFile">Info Image</label>
+                <input asp-for="@Model.AboutImgFile" accept="image/*" class="form-control">
+                <span class="mt-2 text text-danger" asp-validation-for="@Model.AboutImgFile"></span>
+                <p style="margin-top:15px;">Exsist Info Image</p>
+                <img style="margin-top:15px; margin-bottom:30px; display:block;" width="200" src="~/assets/img/about/@Model.AboutContentImage" />
+            </div>
+            
+            <div class="row">
+                <div class="col-md-4">
+                    <label style="margin-bottom:10px; font-size:20px;" asp-for="@Model.AboutContentTitle">Info Title</label>
+                    <textarea asp-for="@Model.AboutContentTitle" type="text" id="editor"></textarea>
+                    <span class="mt-2 text text-danger" asp-validation-for="@Model.AboutContentTitle"></span>
+                </div>
+                <div class="col-md-4">
+                    <label style="margin-bottom:10px; font-size:20px;" asp-for="@Model.AboutContentDesc">About Description</label>
+                    <textarea asp-for="@Model.AboutContentDesc" type="text" id="editor1"></textarea>
+                    <span class="mt-2 text text-danger" asp-validation-for="@Model.AboutContentDesc"></span>
+                </div>
+                
+                <div class="col-md-4">
+                    <label style="margin-bottom:10px; font-size:20px;" asp-for="@Model.FooterDescription">Footer Description  </label>
+                    <textarea asp-for="@Model.FooterDescription" type="text" id="editor3"></textarea>
+                    <span class="mt-2 text text-danger" asp-validation-for="@Model.FooterDescription"></span>
+                </div>
+                <div class="col-md-4 ">
+                    <label asp-for="@Model.AboutContentUrl">Info Link </label>
+                    <input asp-for="@Model.AboutContentUrl" type="text" class="form-control">
+                    <span class="mt-2 text text-danger" asp-validation-for="@Model.AboutContentUrl"></span>
+                </div>
+            </div>
+            <div class="col-md-4 ">
+                <label asp-for="@Model.PhoneNumber1">Phone Number 1: </label>
+                <input asp-for="@Model.PhoneNumber1" type="text" class="form-control">
+                <span class="mt-2 text text-danger" asp-validation-for="@Model.PhoneNumber1"></span>
+            </div>
+            <div class="col-md-4 ">
+                <label asp-for="@Model.PhoneNumber2">Phone Number 2: </label>
+                <input asp-for="@Model.PhoneNumber2" type="text" class="form-control">
+                <span class="mt-2 text text-danger" asp-validation-for="@Model.PhoneNumber2"></span>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="@Model.Mail">Mail</label>
+                <input asp-for="@Model.Mail" type="email" class="form-control">
+                <span class="mt-2 text text-danger" asp-validation-for="@Model.Mail"></span>
+            </div>
+            <div class="col-md-4 ">
+                <label asp-for="@Model.WebAddress">Webadres</label>
+                <input asp-for="@Model.WebAddress" type="text" class="form-control">
+                <span class="mt-2 text text-danger" asp-validation-for="@Model.WebAddress"></span>
+            </div>
+            <div class="col-md-4 ">
+                <label asp-for="@Model.Address">Address</label>
+                <input asp-for="@Model.Address" type="text" class="form-control">
+                <span class="mt-2 text text-danger" asp-validation-for="@Model.Address"></span>
+            </div>
+            
+            @foreach (FooterSocialMedia url in Model.FooterSocialMedias)
+            {
+                <div class="col-md-4 ">
+                    <label asp-for="@url.Icon">Social Icon</label>
+                    <input asp-for="@url.Icon" type="text" class="form-control">
+                    <span class="mt-2 text text-danger" asp-validation-for="@url.Icon"></span>
+                </div>
+                <div>@Html.Raw(url.Icon)</div>
+                <div class="col-md-4 ">
+                    <label asp-for="@url.IconUrl">Social Icon</label>
+                    <input asp-for="@url.IconUrl" type="text" class="form-control">
+                    <span class="mt-2 text text-danger" asp-validation-for="@url.IconUrl"></span>
+                </div>
+            }
+            <div class="col-md-12 mt-3">
+                <a class="btn btn-dark" asp-controller="setting" asp-action="index"><i class="fas fa-undo"></i> Back</a>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts{
+     <script src="~/ckeditor/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace("editor")
+        CKEDITOR.replace("editor1")
+        CKEDITOR.replace("editor2")
+        CKEDITOR.replace("editor3")
+        CKEDITOR.replace("editor4")
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js" integrity="sha512-37T7leoNS06R80c8Ulq7cdCDU5MNQBwlYoy1TX/WUsLFC2eYNqtKlV0QjH7r8JpG/S0GUMZwebnVFLPd6SU5yg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js" integrity="sha512-o6XqxgrUsKmchwy9G5VRNWSSxTS4Urr4loO6/0hYdpWmFUfHqGzawGxeQGMDqYzxjY9sbktPbNlkIQJWagVZQg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+}

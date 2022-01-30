@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Http;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EduHomeBackEndProject.Models
 {
@@ -9,7 +12,7 @@ namespace EduHomeBackEndProject.Models
         [Required]
         [StringLength(maximumLength:70)]
         public string CourseName { get; set; }
-        [Required]
+        
         [StringLength(maximumLength:70)]
         public string CourseImage { get; set; }
         
@@ -27,11 +30,19 @@ namespace EduHomeBackEndProject.Models
         [Required]
         [StringLength(maximumLength: 70)]
         public string CertificationInfo { get; set; }
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal Price { get; set; }
+        public List<CourseFeature> CourseFeatures { get; set; }
         public List<Comment> Comments { get; set; }
         public int CategoryId { get; set; }
         public Category Category{ get; set; }
         public List<CourseTag> CourseTags { get; set; }
-        public CourseFeauture CourseFeauture { get; set; }
+        
+        [NotMapped]
+        public IFormFile CourseImgFile { get; set; }
+        
+        [NotMapped]
+        public List<int> TagIds { get; set; }
 
     }
 }
