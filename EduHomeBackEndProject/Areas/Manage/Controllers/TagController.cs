@@ -41,7 +41,7 @@ namespace EduHomeBackEndProject.Areas.Manage.Controllers
             }
             foreach (var item in Names)
             {
-                if (item.Name.ToLower().Contains(tag.Name.ToLower()))
+                if (item.Name.ToLower().Trim().Contains(tag.Name.ToLower().Trim()))
                 {
                     ModelState.AddModelError("Name", "You enter same Order.Change other Order");
                     return View(tag);
@@ -62,7 +62,7 @@ namespace EduHomeBackEndProject.Areas.Manage.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Tag tag,int id)
         {
-            Tag Name = _context.Tags.Where(t => t.Name.ToLower().Contains(tag.Name.ToLower())).FirstOrDefault();
+            Tag Name = _context.Tags.FirstOrDefault(t => t.Name.ToLower().Trim().Contains(tag.Name.ToLower().Trim()));
 
             if (!ModelState.IsValid)
             {
@@ -73,17 +73,13 @@ namespace EduHomeBackEndProject.Areas.Manage.Controllers
             {
                 return NotFound();
             }
-            if (Name.Id != id)
+            
+            if (Name!=null && Name.Id!=id)
             {
                 ModelState.AddModelError("Name", "You enter same tag.Change other tag");
                 return View(existedTag);
             }
-            //Tag sameName = _context.Tags.FirstOrDefault(t => t.Name.ToLower().Trim() == tag.Name.ToLower().Trim());
-            //if (sameName != null)
-            //{
-            //    ModelState.AddModelError("", "Bu adda kateqoriya databazada movcuddur");
-            //    return View();
-            //}
+           
             existedTag.Name = tag.Name;
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));

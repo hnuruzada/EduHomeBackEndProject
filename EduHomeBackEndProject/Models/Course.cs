@@ -13,13 +13,12 @@ namespace EduHomeBackEndProject.Models
         [StringLength(maximumLength:70)]
         public string CourseName { get; set; }
         
-        [StringLength(maximumLength:70)]
         public string CourseImage { get; set; }
         
         [StringLength(maximumLength:70)]
         public string Icon { get; set; }
         [Required]
-        [StringLength(maximumLength:70)]
+        [StringLength(maximumLength:500)]
         public string Description { get; set; }
         [Required]
         [StringLength(maximumLength: 500)]
@@ -28,7 +27,7 @@ namespace EduHomeBackEndProject.Models
         [StringLength(maximumLength: 500)]
         public string HowToApplyInfo { get; set; }
         [Required]
-        [StringLength(maximumLength: 70)]
+        [StringLength(maximumLength: 500)]
         public string CertificationInfo { get; set; }
         [Column(TypeName = "decimal(18,2)")]
         public decimal Price { get; set; }

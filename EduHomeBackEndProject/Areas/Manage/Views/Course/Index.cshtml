@@ -49,18 +49,11 @@
                 <td>
                     @course.Id
                 </td>
-                @if (@course.CourseImage.Contains("https://"))
-                {
+               
                     <td>
-                        <img style="width:100px;height:100px;object-fit:contain" src="@course.CourseImage" alt="course image" />
+                        <img style="width:100px;height:100px;object-fit:contain" src="~/Assets/img/course/@course.CourseImage" alt="course image" />
                     </td>
-                }
-                else
-                {
-                    <td>
-                        <img style="width:100px;height:100px;object-fit:contain" src="~/Assets/img/course/@course.CourseImage" alt="flower image" />
-                    </td>
-                }
+                
                 <td>
                     @Html.Raw(course.Icon)
                 </td>

@@ -492,3 +492,4 @@ C:\Users\Hesen\Desktop\BackProject\EduHomeBackEndProject\obj\Debug\netcoreapp3.1
 C:\Users\Hesen\Desktop\BackProject\EduHomeBackEndProject\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Category\Delete.cshtml.g.cs
 C:\Users\Hesen\Desktop\BackProject\EduHomeBackEndProject\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Course\Index.cshtml.g.cs
 C:\Users\Hesen\Desktop\BackProject\EduHomeBackEndProject\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Course\Create.cshtml.g.cs
+C:\Users\Hesen\Desktop\BackProject\EduHomeBackEndProject\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Course\Edit.cshtml.g.cs
