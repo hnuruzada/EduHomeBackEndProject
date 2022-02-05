@@ -1,5 +1,6 @@
 ﻿using EduHomeBackEndProject.DAL;
 using EduHomeBackEndProject.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,6 +10,8 @@ using System.Linq;
 namespace EduHomeBackEndProject.Areas.Manage.Controllers
 {
     [Area("Manage")]
+    
+
     public class TagController : Controller
     {
         private readonly AppDbContext _context;
@@ -43,7 +46,7 @@ namespace EduHomeBackEndProject.Areas.Manage.Controllers
             {
                 if (item.Name.ToLower().Trim().Contains(tag.Name.ToLower().Trim()))
                 {
-                    ModelState.AddModelError("Name", "You enter same Order.Change other Order");
+                    ModelState.AddModelError("Name", "You enter same Tag name.Write different Nsme!");
                     return View(tag);
                 }
             }
@@ -62,8 +65,14 @@ namespace EduHomeBackEndProject.Areas.Manage.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Tag tag,int id)
         {
-            Tag Name = _context.Tags.FirstOrDefault(t => t.Name.ToLower().Trim().Contains(tag.Name.ToLower().Trim()));
+            if (tag.Name == null)
+            {
+                ModelState.AddModelError("Name", "You enter Name");
+                return View(tag);
+            }
+            Tag Name = _context.Tags.FirstOrDefault(t => t.Name.ToLower().Trim()==tag.Name.ToLower().Trim());
 
+            
             if (!ModelState.IsValid)
             {
                 return View();
@@ -74,11 +83,13 @@ namespace EduHomeBackEndProject.Areas.Manage.Controllers
                 return NotFound();
             }
             
+
             if (Name!=null && Name.Id!=id)
             {
                 ModelState.AddModelError("Name", "You enter same tag.Change other tag");
                 return View(existedTag);
             }
+           
            
             existedTag.Name = tag.Name;
             _context.SaveChanges();

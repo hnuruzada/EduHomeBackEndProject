@@ -23,9 +23,16 @@
     <Compile Remove="Migrations\20220129204259_CreateAllTables.Designer.cs" />
     <Compile Remove="Migrations\20220130180115_CreatedAllTables.cs" />
     <Compile Remove="Migrations\20220130180115_CreatedAllTables.Designer.cs" />
+    <Compile Remove="Migrations\20220130221036_createdAllTables.cs" />
+    <Compile Remove="Migrations\20220130221036_createdAllTables.Designer.cs" />
+    <Compile Remove="Migrations\20220131092732_changetablecourse.cs" />
+    <Compile Remove="Migrations\20220131092732_changetablecourse.Designer.cs" />
+    <Compile Remove="Migrations\20220131101153_changecourseTable.cs" />
+    <Compile Remove="Migrations\20220131101153_changecourseTable.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.22" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.22" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.22" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.22">

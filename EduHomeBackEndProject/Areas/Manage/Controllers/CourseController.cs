@@ -1,36 +1,44 @@
 ﻿using EduHomeBackEndProject.DAL;
 using EduHomeBackEndProject.Extensions;
 using EduHomeBackEndProject.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace EduHomeBackEndProject.Areas.Manage.Controllers
 {
     [Area("Manage")]
+    
+
     public class CourseController : Controller
     {
         private readonly AppDbContext _context;
         private readonly IWebHostEnvironment _env;
+        
 
         public CourseController(AppDbContext context, IWebHostEnvironment env)
         {
             _context = context;
             _env = env;
+           
         }
         public IActionResult Index(int page = 1)
         {
             ViewBag.TotalPage = Math.Ceiling((decimal)_context.Courses.Count() / 2);
             ViewBag.CurrentPage = page;
-            List<Course> courses = _context.Courses.Include(f => f.Category).Include(c=>c.CourseTags).ThenInclude(ct=>ct.Tag).Skip((page - 1) * 2).Take(2).ToList();
+            List<Course> courses = _context.Courses.Include(c=>c.Comments).Include(f => f.Category).Include(c=>c.CourseTags).ThenInclude(ct=>ct.Tag).Skip((page - 1) * 2).Take(2).ToList();
 
             return View(courses);
         }
 
+        
         public IActionResult Create()
         {
             ViewBag.Tags = _context.Tags.ToList();
@@ -124,21 +132,22 @@ namespace EduHomeBackEndProject.Areas.Manage.Controllers
             }
             if (course.CourseImgFile != null)
             {
-                if (course.CourseImgFile.IsImage())
+                if (!course.CourseImgFile.IsImage())
                 {
                     ModelState.AddModelError("CourseImgFile", "Choose correct format file");
                     return View();
                 }
-                if (course.CourseImgFile.IsSizeOkay(2))
+                if (!course.CourseImgFile.IsSizeOkay(2))
                 {
                     ModelState.AddModelError("CourseImgFile", "File must be max 2mb");
                     return View();
                 }
-
+                Helpers.Helper.DeleteImg(_env.WebRootPath, "assets/img/course", existCourse.CourseImage);
                 existCourse.CourseImage = course.CourseImgFile.SaveImg(_env.WebRootPath, "assets/img/course");
 
                 
             }
+            
 
             if (!ModelState.IsValid)
             {
@@ -187,7 +196,10 @@ namespace EduHomeBackEndProject.Areas.Manage.Controllers
             existCourse.HowToApplyInfo = course.HowToApplyInfo;
             existCourse.CertificationInfo = course.CertificationInfo;
             existCourse.Price = course.Price;
+            existCourse.Description = course.Description;
+
             existCourse.CourseFeatures = course.CourseFeatures;
+            existCourse.Time=course.Time;
 
             existCourse.CategoryId = course.CategoryId;
             _context.SaveChanges();
@@ -212,6 +224,27 @@ namespace EduHomeBackEndProject.Areas.Manage.Controllers
 
             return Json(new { status = 200 });
 
+        }
+
+        public IActionResult Comments(int courseId)
+        {
+            if (!_context.Comments.Any(c => c.CourseId == courseId)) return RedirectToAction("Index", "Course");
+
+            List<Comment> comments = _context.Comments.Include(c => c.Course).Include(c => c.AppUser).Where(c => c.CourseId == courseId).ToList();
+
+
+
+            return View(comments);
+        }
+
+        public IActionResult CommentStatusChange(int id)
+        {
+            if (!_context.Comments.Any(c => c.Id == id)) return RedirectToAction("Index", "Course");
+            Comment comment = _context.Comments.SingleOrDefault(c => c.Id == id);
+
+            comment.IsAccess = comment.IsAccess ? false : true;
+            _context.SaveChanges();
+            return RedirectToAction("Comments", "Course", new { CourseId = comment.CourseId });
         }
 
     }

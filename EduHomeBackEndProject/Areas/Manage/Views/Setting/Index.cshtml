@@ -55,8 +55,13 @@
                                 <td>@Model.PhoneNumber2</td>
                                 
                                 <td>@Model.Mail</td>
-    
-                                <td>@Model.FooterDescription.Substring(0,25)...</td>
+                                @if (Model.FooterDescription.Length > 25)
+                                {
+                                    <td>@Model.FooterDescription.Substring(0,25)...</td>
+                                }else{
+                                    <td>@Model.FooterDescription</td>
+                                }
+                                
                                 <td>@Model.WebAddress</td>
                                 <td>
                                     <a asp-action="edit" asp-route-id="@Model.Id" class="btn btn-warning">

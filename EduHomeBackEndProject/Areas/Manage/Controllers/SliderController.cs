@@ -1,6 +1,7 @@
 ﻿using EduHomeBackEndProject.DAL;
 using EduHomeBackEndProject.Extensions;
 using EduHomeBackEndProject.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,6 +11,8 @@ using System.Linq;
 namespace EduHomeBackEndProject.Areas.Manage.Controllers
 {
     [Area("Manage")]
+    
+
     public class SliderController : Controller
     {
 

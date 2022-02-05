@@ -6,7 +6,7 @@ namespace EduHomeBackEndProject.Models
     public class Tag
     {
         public int Id { get; set; }
-        [Required]
+        [Required (ErrorMessage ="Enter tag name!")]
         [StringLength(maximumLength:30)]
         public string Name { get; set; }
         public List<CourseTag> CourseTags { get; set; }

@@ -1,4 +1,7 @@
-﻿
+﻿@inject EduHomeBackEndProject.Services.LayoutService layoutService
+@model AboutVM
+@using EduHomeBackEndProject.ViewModels
+
 @{
     ViewData["Title"] = "Index";
 }
@@ -27,15 +30,15 @@
                 <div class="row">
                     <div class="col-md-6 col-sm-6">
                         <div class="about-content">
-                            <h2>WELCOME TO <span>EDUHOME</span></h2>
-                            <p>I must explain to you how all this mistaken idea of denouncing pleure and prsing pain was born and I will give you a complete account of the system, and expound the actual teachings  the master-builder of humanit happiness</p>
-                            <p class="hidden-sm">I must explain to you how all this mistaken idea of denouncing pleure and prsing pain was born and I will give you a complete account of the system</p>
+                            <h2>WELCOME TO <span>@Html.Raw(layoutService.GetSettingData().AboutContentTitle)</span></h2>
+                            <p>@Html.Raw(layoutService.GetSettingData().AboutContentDesc)</p>
+                            
                             <a class="default-btn" href="#">view courses</a>
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-6">
                         <div class="about-img">
-                            <img src="~/Assets/img/about/about.png" alt="about">
+                            <img src="~/Assets/img/about/@layoutService.GetSettingData().AboutContentImage" alt="about">
                         </div>
                     </div>
                 </div>
@@ -54,74 +57,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-3 col-sm-4 col-xs-12">
-                        <div class="single-teacher">
-                            <div class="single-teacher-img">
-                                <a href="teacher-details.html"><img src="~/Assets/img/teacher/teacher1.jpg" alt="teacher"></a>  
-                            </div>
-                            <div class="single-teacher-content text-center">
-                                <h2><a href="teacher-details.html">STUART KELVIN</a></h2>
-                                <h4>Associate Professor</h4>
-                                <ul>
-                                    <li><a href="https://www.facebook.com/devitems/?ref=bookmarks"><i class="zmdi zmdi-facebook"></i></a></li>
-                                    <li><a href="https://www.pinterest.com/devitemsllc/"><i class="zmdi zmdi-pinterest"></i></a></li>
-                                    <li><a href="#"><i class="zmdi zmdi-vimeo"></i></a></li>
-                                    <li><a href="https://twitter.com/devitemsllc"><i class="zmdi zmdi-twitter"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-4 col-xs-12">
-                        <div class="single-teacher">
-                            <div class="single-teacher-img">
-                                <a href="teacher-details.html"><img src="~/Assets/img/teacher/teacher2.jpg" alt="teacher"></a>  
-                            </div>
-                            <div class="single-teacher-content text-center">
-                                <h2><a href="teacher-details.html">eamily cristian</a></h2>
-                                <h4>Associate Professor</h4>
-                                <ul>
-                                    <li><a href="https://www.facebook.com/devitems/?ref=bookmarks"><i class="zmdi zmdi-facebook"></i></a></li>
-                                    <li><a href="https://www.pinterest.com/devitemsllc/"><i class="zmdi zmdi-pinterest"></i></a></li>
-                                    <li><a href="#"><i class="zmdi zmdi-vimeo"></i></a></li>
-                                    <li><a href="https://twitter.com/devitemsllc"><i class="zmdi zmdi-twitter"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-4 col-xs-12">
-                        <div class="single-teacher">
-                            <div class="single-teacher-img">
-                                <a href="teacher-details.html"><img src="~/Assets/img/teacher/teacher3.jpg" alt="teacher"></a>  
-                            </div>
-                            <div class="single-teacher-content text-center">
-                                <h2><a href="teacher-details.html">kevin williams</a></h2>
-                                <h4>Associate Professor</h4>
-                                <ul>
-                                    <li><a href="https://www.facebook.com/devitems/?ref=bookmarks"><i class="zmdi zmdi-facebook"></i></a></li>
-                                    <li><a href="https://www.pinterest.com/devitemsllc/"><i class="zmdi zmdi-pinterest"></i></a></li>
-                                    <li><a href="#"><i class="zmdi zmdi-vimeo"></i></a></li>
-                                    <li><a href="https://twitter.com/devitemsllc"><i class="zmdi zmdi-twitter"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 hidden-sm col-xs-12">
-                        <div class="single-teacher">
-                            <div class="single-teacher-img">
-                                <a href="teacher-details.html"><img src="~/Assets/img/teacher/teacher4.jpg" alt="teacher"></a>  
-                            </div>
-                            <div class="single-teacher-content text-center">
-                                <h2><a href="teacher-details.html">salina gomaze</a></h2>
-                                <h4>Associate Professor</h4>
-                                <ul>
-                                    <li><a href="https://www.facebook.com/devitems/?ref=bookmarks"><i class="zmdi zmdi-facebook"></i></a></li>
-                                    <li><a href="https://www.pinterest.com/devitemsllc/"><i class="zmdi zmdi-pinterest"></i></a></li>
-                                    <li><a href="#"><i class="zmdi zmdi-vimeo"></i></a></li>
-                                    <li><a href="https://twitter.com/devitemsllc"><i class="zmdi zmdi-twitter"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                   @await Html.PartialAsync("_TeacherPartialView",Model.Teachers.Take(4).ToList())
                 </div>
             </div>
         </div>
@@ -159,7 +95,7 @@
                             <h3>TAKE A VIDEO TOUR</h3>
                             <div class="notice-video">
                                 <div class="video-icon video-hover">
-                                    <a class="video-popup" href="https://www.youtube.com/watch?v=to6Ghf8UL7o">
+                                    <a class="video-popup" href="@layoutService.GetSettingData().VideoTourUrl">
                                         <i class="zmdi zmdi-play"></i>
                                     </a>
                                 </div>
@@ -170,30 +106,14 @@
                         <div class="notice-left-wrapper">  
                             <h3>notice board</h3>
                             <div class="notice-left">
-                                <div class="single-notice-left mb-23 pb-20">
-                                    <h4>5, June 2017</h4>
-                                    <p>I must explain to you how all this mistaken idea of denouncing plasure and praising pain was born and I will give you a complete </p>
+                                @foreach (NoticeBoard noticeBoard in Model.NoticeBoards)
+                               {
+                                   <div class="single-notice-left mb-23 pb-20">
+                                    <h4>@Html.Raw(noticeBoard.Date.ToString("dd,MMMM yyyy"))</h4>
+                                    <p>@Html.Raw(noticeBoard.Description)</p>
                                 </div>
-                                <div class="single-notice-left hidden-sm mb-23 pb-20">
-                                    <h4>4, June 2017</h4>
-                                    <p>I must explain to you how all this mistaken idea of denouncing plasure and praising pain was born and I will give you a complete </p>
-                                </div>
-                                <div class="single-notice-left pb-70">
-                                    <h4>3, June 2017</h4>
-                                    <p>I must explain to you how all this mistaken idea of denouncing plasure and praising pain was born and I will give you a complete </p>
-                                </div>
-                                <div class="single-notice-left mb-23 pb-20">
-                                    <h4>5, June 2017</h4>
-                                    <p>I must explain to you how all this mistaken idea of denouncing plasure and praising pain was born and I will give you a complete </p>
-                                </div>
-                                <div class="single-notice-left hidden-sm mb-23 pb-20">
-                                    <h4>4, June 2017</h4>
-                                    <p>I must explain to you how all this mistaken idea of denouncing plasure and praising pain was born and I will give you a complete </p>
-                                </div>
-                                <div class="single-notice-left pb-70">
-                                    <h4>3, June 2017</h4>
-                                    <p>I must explain to you how all this mistaken idea of denouncing plasure and praising pain was born and I will give you a complete </p>
-                                </div>
+                               }
+                                
                             </div>
                         </div>    
                     </div>

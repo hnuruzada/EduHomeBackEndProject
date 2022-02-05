@@ -11,12 +11,18 @@ namespace EduHomeBackEndProject.Models
         public string Message { get; set; }
         [Required]
         public DateTime Date { get; set; }
-        public int BlogId { get; set; }
+        public bool IsAccess { get; set; }
+       
+        public int? BlogId { get; set; }
         public Blog Blog { get; set; }
-        public int EventId { get; set; }
+      
+        public int? EventId { get; set; }
         public Event Event { get; set; }
-        public int CourseId { get; set; }
+        
+        public int? CourseId { get; set; }
         public Course Course { get; set; }
+        public string AppUserId { get; set; }
+        public AppUser AppUser { get; set; }
 
     }
 }

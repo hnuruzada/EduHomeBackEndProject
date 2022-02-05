@@ -1,9 +1,11 @@
-﻿using EduHomeBackEndProject.Models;
+﻿using EduHomeBackEndProject.Controllers;
+using EduHomeBackEndProject.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace EduHomeBackEndProject.DAL
 {
-    public class AppDbContext:DbContext
+    public class AppDbContext: IdentityDbContext<AppUser>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options):base(options)
         {
@@ -34,7 +36,6 @@ namespace EduHomeBackEndProject.DAL
         public DbSet<TeacherFaculty> TeacherFaculties { get; set; }
         public DbSet<TeacherHobbie> TeacherHobbies { get; set; }
         public DbSet<TeacherPosition> TeacherPositions { get; set; }
-        public DbSet<TeacherSkill> TeacherSkills { get; set; }
 
 
 

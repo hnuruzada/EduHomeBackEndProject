@@ -82,28 +82,86 @@
                 <span class="mt-2 text text-danger" asp-validation-for="@Model.Address"></span>
             </div>
             
-            @foreach (FooterSocialMedia url in Model.FooterSocialMedias)
-            {
-                <div class="col-md-4 ">
-                    <label asp-for="@url.Icon">Social Icon</label>
-                    <input asp-for="@url.Icon" type="text" class="form-control">
-                    <span class="mt-2 text text-danger" asp-validation-for="@url.Icon"></span>
-                </div>
-                <div>@Html.Raw(url.Icon)</div>
-                <div class="col-md-4 ">
-                    <label asp-for="@url.IconUrl">Social Icon</label>
-                    <input asp-for="@url.IconUrl" type="text" class="form-control">
-                    <span class="mt-2 text text-danger" asp-validation-for="@url.IconUrl"></span>
-                </div>
+            <h3>Footer Social Media</h3>
+
+            <div class="form-row col-12 mt-4" id="footerSocialMedia">
+            @{ int count = 0;
+                @foreach (var item in Model.FooterSocialMedias)
+                {
+                    <div class="form-group col-12">
+                        <label for="footerSocialMediaIcon">Social Icon</label>
+                        <input name="FooterSocialMedias[@count].Icon" type="text" value="@item.Icon" class="deleting" />
+                        <span class="text-danger"></span>
+
+                        <label for="footerSocialMediaUrl"> Icon Url</label>
+                        <input name="FooterSocialMedias[@count].IconUrl" type="text" value="@item.IconUrl" class="deleting" />
+                        <span class="text-danger"></span>
+                        <span><i class="fas fa-minus delete-footersocial"> </i></span>
+
+                    </div>
+                    count++;
+                }
             }
-            <div class="col-md-12 mt-3">
-                <a class="btn btn-dark" asp-controller="setting" asp-action="index"><i class="fas fa-undo"></i> Back</a>
-                <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+
+        <div class="form-row justify-content-center">
+            <div class="form-group">
+                <button data-nextIndex="@Model.FooterSocialMedias.Count" class="add-footersocial btn btn-primary">+</button>
             </div>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 </div>
 @section Scripts{
+    <script>
+      $(document).ready(function () {
+        $(document).on("click", ".add-footersocial", function (e) {
+            e.preventDefault();
+            var nextIndex = $(this).attr("data-nextIndex");
+            var inputGroup = ` <div class="form-group col-12" data-index="0">
+                <label for="footerSocialMediaIcon">Social Icon</label>
+                <input name="FooterSocialMedias[`+ nextIndex+`].Icon" type="text" />
+                <span class="text-danger"></span>
+                <label for="footerSocialMediaIcon"> Icon Url</label>
+                <input name="FooterSocialMedias[`+ nextIndex+`].IconUrl" type="text" />
+                <span class="text-danger"></span>
+                <span><i class="fas fa-minus delete-footersocial"> </i></span>
+            </div>`
+            $("#footerSocialMedia").append($(inputGroup))
+            nextIndex = +nextIndex + 1;
+            console.log(nextIndex)
+            $(this).attr("data-nextIndex", nextIndex)
+        })
+        $(document).on("click", ".delete-footersocial", function (e) {
+            e.preventDefault();
+            console.log("test");
+            $(this).parents(".form-group").empty();
+        })
+    })
+
+        for (var i = 0; i < document.getElementsByClassName("delete-footersocial").length; i++) {
+
+            document.getElementsByClassName("delete-footersoacial")[i].onclick = function (e) {
+                e.preventDefault();
+                this.parentElement.parentElement.innerHTML = null;
+                
+                for (var z = 0; z < document.getElementsByClassName("deleting").length; z += 2) {
+                    var count = 0;
+                    for (var t = 0; t < 2; t++) {
+                        var name = "FooterSocialMedias[" + (z / 2) + "].Name";
+                        var value = "FooterSocialMedias[" + (z / 2) + "].Value";
+                        document.getElementsByClassName("deleting")[z].setAttribute("name", icon);
+                        document.getElementsByClassName("deleting")[z + 1].setAttribute("name", iconurl);
+                        count++;
+                    }
+                }
+            }
+        }
+
+    </script>
      <script src="~/ckeditor/ckeditor.js"></script>
     <script>
         CKEDITOR.replace("editor")

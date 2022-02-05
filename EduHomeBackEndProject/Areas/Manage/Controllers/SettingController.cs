@@ -1,6 +1,7 @@
 ﻿using EduHomeBackEndProject.DAL;
 using EduHomeBackEndProject.Extensions;
 using EduHomeBackEndProject.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,8 @@ using System.Threading.Tasks;
 namespace EduHomeBackEndProject.Areas.Manage.Controllers
 {
     [Area("Manage")]
+   
+
     public class SettingController : Controller
     {
         private readonly AppDbContext _context;
@@ -274,6 +277,18 @@ namespace EduHomeBackEndProject.Areas.Manage.Controllers
                 settingEdit.FooterLogo = setting.FooterLogoFile.SaveImg(_env.WebRootPath, "assets/img/logo");
 
 
+            }
+            List<FooterSocialMedia> existFSocialMeadias = _context.FooterSocialMedias.Where(x => x.SettingId == setting.Id).ToList();
+
+
+            List<FooterSocialMedia> fsocialMedia = setting.FooterSocialMedias;
+            if (fsocialMedia != null)
+            {
+                _context.Settings.FirstOrDefault(x => x.Id == setting.Id).FooterSocialMedias = fsocialMedia;
+            }
+            if (existFSocialMeadias != null)
+            {
+                _context.FooterSocialMedias.RemoveRange(existFSocialMeadias);
             }
 
             settingEdit.AboutContentTitle = setting.AboutContentTitle;

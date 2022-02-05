@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EduHomeBackEndProject.Models
 {
@@ -33,8 +35,19 @@ namespace EduHomeBackEndProject.Models
         public string PhoneNumber { get; set; }
         public List<TeacherHobbie> TeacherHobbies { get; set; }
         public List<TeacherFaculty> TeacherFaculties { get; set; }
-        public List<TeacherSkill> TeacherSkills { get; set; }
+        public List<Skill> Skills { get; set; }
         public List<SocialMedia> SocialMedias { get; set; }
         public List<TeacherPosition> TeacherPositions { get; set; }
+        [NotMapped]
+        public IFormFile ImageFile { get; set; }
+
+        [NotMapped]
+        public List<int> HobbieIds { get; set; }
+        [NotMapped]
+        public List<int> FacultyIds { get; set; }
+        [NotMapped]
+        public List<int> PositionIds { get; set; }
+       
+
     }
 }

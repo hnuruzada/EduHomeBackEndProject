@@ -11,6 +11,7 @@ namespace EduHomeBackEndProject.Models
         public string Name { get; set; }
         [Required]
         public int DegreePoint { get; set; }
-        public List<TeacherSkill> TeacherSkills { get; set; }
+        public int TeacherId { get; set; }
+        public Teacher Teacher { get; set; }
     }
 }

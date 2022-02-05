@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EduHomeBackEndProject.Models
 {
@@ -8,7 +10,7 @@ namespace EduHomeBackEndProject.Models
     {
         public int Id { get; set; }
         
-        [StringLength(maximumLength:70)]
+        
         public string Image { get; set; }
         [Required]
         
@@ -20,11 +22,11 @@ namespace EduHomeBackEndProject.Models
         [StringLength(maximumLength: 1000)]
         public string Description { get; set; }
         [Required]
-        [StringLength(maximumLength: 10)]
+      
 
         public DateTime StartTime { get; set; }
         [Required]
-        [StringLength(maximumLength: 10)]
+       
 
         public DateTime FinishTime { get; set; }
         [Required]
@@ -32,5 +34,9 @@ namespace EduHomeBackEndProject.Models
         public string Venue { get; set; }
         public List<EventSpeaker> EventSpeakers { get; set; }
         public List<Comment> Comments { get; set; }
+        [NotMapped]
+        public IFormFile ImageFile { get; set; }
+        [NotMapped]
+        public List<int> SpeakerIds { get; set; }
     }
 }

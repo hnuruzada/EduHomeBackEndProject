@@ -1,5 +1,6 @@
 ﻿using EduHomeBackEndProject.DAL;
 using EduHomeBackEndProject.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,6 +10,8 @@ using System.Linq;
 namespace EduHomeBackEndProject.Areas.Manage.Controllers
 {
     [Area("Manage")]
+   
+
     public class CategoryController : Controller
     {
         private readonly AppDbContext _context;
@@ -34,9 +37,18 @@ namespace EduHomeBackEndProject.Areas.Manage.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Category category)
         {
+            List<Category> Names = _context.Categories.Where(hs => hs.Name.ToLower().Contains(category.Name.ToLower())).ToList();
             if (!ModelState.IsValid)
             {
                 return Content("Name max 20 olmalidir");
+            }
+            foreach (var item in Names)
+            {
+                if (item.Name.ToLower().Trim().Contains(category.Name.ToLower().Trim()))
+                {
+                    ModelState.AddModelError("Name", "You enter same Category Name.Write different category name!");
+                    return View(category);
+                }
             }
 
             _context.Categories.Add(category);
@@ -51,8 +63,10 @@ namespace EduHomeBackEndProject.Areas.Manage.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Category category)
+        public IActionResult Edit(Category category, int id)
         {
+            Category sameName = _context.Categories.FirstOrDefault(c => c.Name.ToLower().Trim() == category.Name.ToLower().Trim());
+
             if (!ModelState.IsValid)
             {
                 return View();
@@ -63,11 +77,10 @@ namespace EduHomeBackEndProject.Areas.Manage.Controllers
                 return NotFound();
             }
 
-            Category sameName = _context.Categories.FirstOrDefault(c => c.Name.ToLower().Trim() == category.Name.ToLower().Trim());
-            if (sameName != null)
+            if (sameName != null && sameName.Id != id)
             {
-                ModelState.AddModelError("", "Bu adda kateqoriya databazada movcuddur");
-                return View();
+                ModelState.AddModelError("Name", "You enter same tag.Change other tag");
+                return View(existedCategory);
             }
             existedCategory.Name = category.Name;
             _context.SaveChanges();

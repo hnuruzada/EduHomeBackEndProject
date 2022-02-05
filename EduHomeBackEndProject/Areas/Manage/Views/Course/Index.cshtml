@@ -20,7 +20,7 @@
                     Course image
                 </th>
                 <th>
-                    Course Icon
+                    Course Date
                 </th>
                 <th>
                     Course Name
@@ -28,18 +28,14 @@
                 <th>
                     Description
                 </th>
-                <th>
-                    About Course Info
-                </th>
-                <th>
-                    How To Apply Info
-                </th>
-                <th>
-                    Certification
-                </th>
+               
                 <th>
                     Settings
                 </th>
+                <th>
+                    Comment
+                </th>
+
             </tr>
         </thead>
         <tbody>
@@ -55,7 +51,7 @@
                     </td>
                 
                 <td>
-                    @Html.Raw(course.Icon)
+                    @course.Time
                 </td>
                 <td>
                     @course.CourseName
@@ -72,25 +68,17 @@
                         @course.Description
                     </td>
                 }
+                
+                
                 <td>
-                    @course.AboutCourseInfo
-                </td>
-                <td>
-                    @course.HowToApplyInfo
-                </td>
-                <td>
-                    @course.CertificationInfo
-                </td>
-                <td>
-                    <a asp-controller="course" asp-action="edit" asp-route-id="@course.Id" class="btn btn-warning btn-icon-text">
-                        <i class="mdi mdi-file-check btn-icon-append"></i>
-                        Edit
+                    <a asp-controller="course" asp-action="edit" asp-route-id="@course.Id"  >
+                        <i style="font-size:30px;" class="fas fa-edit"></i>
                     </a>
-                    <a asp-controller="course" asp-action="delete" asp-route-id="@course.Id" class="btn btn-danger btn-icon-text delete-item">
-                        <i class="mdi mdi-alert btn-icon-prepend"></i>
-                        Delete
+                    <a asp-controller="course" asp-action="delete" asp-route-id="@course.Id" class=" delete-item" >
+                       <i style="font-size:30px;" class="fas fa-trash-alt"></i>
                     </a>
                 </td>
+                <td><a asp-controller="course" asp-action="comments" asp-route-CourseId="@course.Id" ><i class="fas fa-comment" style="font-size:30px;"></i> </a> </td>
             </tr>
             }
         </tbody>
@@ -103,16 +91,16 @@
             <ul class="pagination" style="justify-content:center">
                 
                     <li class="page-item @(ViewBag.Currentpage == 1 ? "disabled" : "")">
-                        <a class="page-link" asp-controller="flower" asp-action="index" asp-route-page="@(ViewBag.CurrentPage-1)">Previous</a>
+                        <a class="page-link" asp-controller="course" asp-action="index" asp-route-page="@(ViewBag.CurrentPage-1)">Previous</a>
                     </li>
                 
                 @for (int i = 1; i <= ViewBag.TotalPage; i++)
                 {
-                    <li class="page-item  @(ViewBag.CurrentPage == i ? "active" : "")" style="pointer-events: @(ViewBag.CurrentPage == i ? "none" : "")"><a class="page-link" asp-controller="flower" asp-action="index" asp-route-page="@i">@i</a></li>
+                    <li class="page-item  @(ViewBag.CurrentPage == i ? "active" : "")" style="pointer-events: @(ViewBag.CurrentPage == i ? "none" : "")"><a class="page-link" asp-controller="course" asp-action="index" asp-route-page="@i">@i</a></li>
                 }
 
                 <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPage ? "disabled" : "")">
-                    <a class="page-link" asp-controller="flower" asp-action="index" asp-route-page="@(ViewBag.CurrentPage +1)">Next</a>
+                    <a class="page-link" asp-controller="course" asp-action="index" asp-route-page="@(ViewBag.CurrentPage +1)">Next</a>
                 </li>
             </ul>
         </nav>

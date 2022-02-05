@@ -1,0 +1,59 @@
+﻿@model List<Event>
+@{
+    var controller = ViewContext.RouteData.Values["controller"].ToString();
+}
+@if(controller=="Event")
+{
+    @foreach (Event vent in Model)
+{
+     <div class="col-md-6 col-sm-12 col-xs-12">
+        <div class="single-event hidden-sm hidden-xs mb-60">
+            <div class="event-img">
+                <a asp-controller="event" asp-action="details" asp-route-id="@vent.Id">
+                    <img src="~/Assets/img/event/@vent.Image" alt="event">
+                    <div class="course-hover">
+                        <i class="fa fa-link"></i>
+                    </div>
+                </a>
+                <div class="event-date">
+                    <h3>@vent.Date.ToString("dd") <span>@vent.Date.ToString("MMMM").Substring(0,3)</span></h3>
+                </div>
+            </div>
+            <div class="event-content text-left">
+                <h4><a asp-controller="event" asp-action="details" asp-route-id="@vent.Id">@vent.Title</a></h4>
+                <ul>
+                    <li><span>time:</span> @vent.StartTime.ToString("HH:mm") - @vent.FinishTime.ToString("HH:mm")</li>
+                    <li><span>venue</span> @vent.Venue</li>
+                </ul>
+                <div class="event-content-right">
+                    <a asp-controller="event" asp-action="details" asp-route-id="@vent.Id">join now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+}
+else if(controller=="Home"){
+    @foreach (Event vent in Model)
+{
+    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <div class="single-event mb-35">
+                            <div class="event-img">
+                                <a href="event-details.html"><img style="width:230px; height:192px;" src="~/Assets/img/event/@vent.Image" alt="event"></a>
+                            </div>
+                            <div class="event-content text-left">
+                                <h3>@vent.Date.ToString("dd") @vent.Date.ToString("MMMM").Substring(0,3)</h3>
+                                <h4><a href="event-details.html">@vent.Title</a></h4>
+                                <ul>
+                                    <li><i class="fa fa-clock-o"></i>@vent.StartTime.ToString("HH:mm") - @vent.FinishTime.ToString("HH:mm")</li>
+                                    <li><i class="fa fa-map-marker"></i>@vent.Venue</li>
+                                </ul>
+                                <div class="event-content-right">
+                                    <a class="default-btn" href="event-details.html">join now</a>
+                                </div>
+                            </div>
+                        </div>
+     
+    </div>
+}
+}

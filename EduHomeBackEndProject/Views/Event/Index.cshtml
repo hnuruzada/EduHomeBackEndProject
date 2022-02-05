@@ -1,4 +1,5 @@
-﻿
+﻿@model EventVM
+@using EduHomeBackEndProject.ViewModels
 @{
     ViewData["Title"] = "Index";
 }
@@ -23,183 +24,26 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8">
-                        <div class="row">
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="single-event mb-60">
-                                    <div class="event-img">
-                                        <a href="event-details.html">
-                                            <img src="~/Assets/img/event/event5.jpg" alt="event">
-                                            <div class="course-hover">
-                                                <i class="fa fa-link"></i>
-                                            </div>
-                                        </a>
-                                        <div class="event-date">
-                                            <h3>20 <span>jun</span></h3>  
-                                        </div>
-                                    </div>
-                                    <div class="event-content text-left">
-                                        <h4><a href="event-details.html">ADVANCE PHP WORKSHOP</a></h4>
-                                        <ul>
-                                            <li><span>time:</span> 9.00 AM - 4.45 PM</li>
-                                            <li><span>venue</span> New Yourk City</li>
-                                        </ul>
-                                        <div class="event-content-right">
-                                            <a class="default-btn" href="event-details.html">join now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="single-event mb-60">
-                                    <div class="event-img">
-                                        <a href="event-details.html">
-                                            <img src="~/Assets/img/event/event6.jpg" alt="event">
-                                            <div class="course-hover">
-                                                <i class="fa fa-link"></i>
-                                            </div>
-                                        </a>
-                                        <div class="event-date">
-                                            <h3>18 <span>jun</span></h3>  
-                                        </div>
-                                    </div>
-                                    <div class="event-content text-left">
-                                        <h4><a href="event-details.html">learning english history</a></h4>
-                                        <ul>
-                                            <li><span>time:</span> 9.00 AM - 4.45 PM</li>
-                                            <li><span>venue</span> New Yourk City</li>
-                                        </ul>
-                                        <div class="event-content-right">
-                                            <a class="default-btn" href="event-details.html">join now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="single-event mb-60">
-                                    <div class="event-img">
-                                        <a href="event-details.html">
-                                            <img src="~/Assets/img/event/event7.jpg" alt="event">
-                                            <div class="course-hover">
-                                                <i class="fa fa-link"></i>
-                                            </div>
-                                        </a>
-                                        <div class="event-date">
-                                            <h3>16 <span>jun</span></h3>  
-                                        </div>
-                                    </div>
-                                    <div class="event-content text-left">
-                                        <h4><a href="event-details.html">UI &amp; UX DESIGNER MEETUP</a></h4>
-                                        <ul>
-                                            <li><span>time:</span> 9.00 AM - 4.45 PM</li>
-                                            <li><span>venue</span> New Yourk City</li>
-                                        </ul>
-                                        <div class="event-content-right">
-                                            <a class="default-btn" href="event-details.html">join now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="single-event mb-60">
-                                    <div class="event-img">
-                                        <a href="event-details.html">
-                                            <img src="~/Assets/img/event/event8.jpg" alt="event">
-                                            <div class="course-hover">
-                                                <i class="fa fa-link"></i>
-                                            </div>
-                                        </a>
-                                        <div class="event-date">
-                                            <h3>14 <span>jun</span></h3>  
-                                        </div>
-                                    </div>
-                                    <div class="event-content text-left">
-                                        <h4><a href="event-details.html">ADVANCE WEB DEVELOPMENT</a></h4>
-                                        <ul>
-                                            <li><span>time:</span> 9.00 AM - 4.45 PM</li>
-                                            <li><span>venue</span> New Yourk City</li>
-                                        </ul>
-                                        <div class="event-content-right">
-                                            <a class="default-btn" href="event-details.html">join now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="single-event mb-60">
-                                    <div class="event-img">
-                                        <a href="event-details.html">
-                                            <img src="~/Assets/img/event/event9.jpg" alt="event">
-                                            <div class="course-hover">
-                                                <i class="fa fa-link"></i>
-                                            </div>
-                                        </a>
-                                        <div class="event-date">
-                                            <h3>12 <span>jun</span></h3>  
-                                        </div>
-                                    </div>
-                                    <div class="event-content text-left">
-                                        <h4><a href="event-details.html">digital marketing analysis</a></h4>
-                                        <ul>
-                                            <li><span>time:</span> 9.00 AM - 4.45 PM</li>
-                                            <li><span>venue</span> New Yourk City</li>
-                                        </ul>
-                                        <div class="event-content-right">
-                                            <a class="default-btn" href="event-details.html">join now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="single-event mb-60">
-                                    <div class="event-img">
-                                        <a href="event-details.html">
-                                            <img src="~/Assets/img/event/event10.jpg" alt="event">
-                                            <div class="course-hover">
-                                                <i class="fa fa-link"></i>
-                                            </div>
-                                        </a>
-                                        <div class="event-date">
-                                            <h3>10 <span>jun</span></h3>  
-                                        </div>
-                                    </div>
-                                    <div class="event-content text-left">
-                                        <h4><a href="event-details.html">Developer's meetup</a></h4>
-                                        <ul>
-                                            <li><span>time:</span> 9.00 AM - 4.45 PM</li>
-                                            <li><span>venue</span> New Yourk City</li>
-                                        </ul>
-                                        <div class="event-content-right">
-                                            <a class="default-btn" href="event-details.html">join now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>  
+                        <div class="row" id="Old-Events">
+                           @await Html.PartialAsync("_EventPartialView",Model.Events)
                         </div>
+                        <div class="row" id="New-Events">
+        </div>
                     </div>
                     <div class="col-md-4">
                         <div class="blog-sidebar right text-left">
                             <div class="single-blog-widget mb-50">
                                 <h3>search</h3>
                                 <div class="blog-search">
-                                    <form id="search" action="#">
-                                        <input type="search" placeholder="Search..." name="search" />
+                                    <form >
+                                        <input type="search" placeholder="Search..." id="Event-Search" name="search" />
                                         <button type="submit">
                                             <span><i class="fa fa-search"></i></span>
                                         </button>
                                     </form>
                                 </div>
                             </div>
-                            <div class="single-blog-widget mb-50">
-                                <h3>categories</h3>
-                                <ul>
-                                    <li><a href="#">CSS Engineering (10)</a></li>
-                                    <li><a href="#">Political Science (12)</a></li>
-                                    <li><a href="#">Micro Biology (08)</a></li>
-                                    <li><a href="#">HTML5 &amp; CSS3 (15)</a></li>
-                                    <li><a href="#">Web Design (20)</a></li>
-                                    <li><a href="#">PHP (23)</a></li>
-                                </ul>
-                            </div>
+                            
                             <div class="single-blog-widget mb-50">
                                 <div class="single-blog-banner">
                                     <a href="blog-details.html" id="blog"><img src="~/Assets/img/blog/blog-img.jpg" alt="blog"></a>
@@ -248,17 +92,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="single-blog-widget">
-                                <h3>tags</h3>
-                                <div class="single-tag">
-                                    <a href="blog-details.html" class="mr-10 mb-10">course</a>
-                                    <a href="blog-details.html" class="mr-10 mb-10">education</a>
-                                    <a href="blog-details.html" class="mb-10">teachers</a>
-                                    <a href="blog-details.html" class="mr-10">learning</a>
-                                    <a href="blog-details.html" class="mr-10">university</a>
-                                    <a href="blog-details.html">events</a>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -295,3 +129,33 @@
                 </div>
             </div>
         </div>
+
+        @section Scripts{
+<script>
+                    $(document).on('keyup', `#Event-Search`, function () {
+
+        $("#New-Events").empty()
+        if ($(this).val().length > 0) {
+            $.ajax({
+                url: `/Event/Search`,
+                data: {
+                    "searching": $(this).val(),
+                },
+                type: "Get",
+                success: function (res) {
+
+                    $("#Old-Events").css("display", "none")
+
+                    $("#New-Events").append(res)
+
+                }
+            })
+        }
+        else {
+            $("#Old-Events").css("display", "block")
+
+        }
+
+    })
+</script>
+        }

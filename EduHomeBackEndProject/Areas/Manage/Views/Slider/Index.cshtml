@@ -65,13 +65,11 @@
                        @headerSlider.Order
                     </td>
                     <td>
-                        <a asp-controller="slider" asp-action="edit" asp-route-id="@headerSlider.Id" class="btn btn-warning btn-icon-text">
-                            <i class="mdi mdi-file-check btn-icon-append"></i>
-                            Edit
+                        <a asp-controller="slider" asp-action="edit" asp-route-id="@headerSlider.Id" >
+                            <i style="font-size:30px;" class="fas fa-edit"></i>
                         </a>
-                        <a asp-controller="slider" asp-action="delete" asp-route-id="@headerSlider.Id" class="btn btn-danger btn-icon-text delete-item">
-                            <i class="mdi mdi-alert btn-icon-prepend"></i>
-                            Delete
+                        <a asp-controller="slider" asp-action="delete" asp-route-id="@headerSlider.Id" class="delete-item">
+                             <i style="font-size:30px;" class="fas fa-trash-alt"></i>
                         </a>
                     </td>
                 </tr>

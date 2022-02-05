@@ -1,0 +1,152 @@
+﻿@model List<Event>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+
+    <div class="mt-2 d-flex" style="justify-content:flex-end">
+        <a asp-controller="event" asp-action="create" class="btn btn-success btn-icon-text">
+            <i class="mdi mdi-upload btn-icon-prepend"></i>
+            Create
+        </a>
+    </div>
+    <table class="table table-dark mt-4">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    Event Image
+                </th>
+                <th>
+                    Date
+                </th>
+
+
+                <th>
+                    Title
+                </th>
+                <th>
+                    Start Time
+                </th>
+                <th>
+                    Finish Time
+                </th>
+                <th>
+                    Venue
+                </th>
+                <th>
+                    Settings
+                </th>
+                <th>
+                    Comment
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Event item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.Id
+                    </td>
+                    <td>
+                        <img style="border-radius:0; width:100px;height:150px; object-fit:contain;" src="~/Assets/img/event/@item.Image" alt="event image" />
+                    </td>
+                    <td>
+                        @item.Date
+                    </td>
+
+
+                    <td>
+                        @item.Title
+                    </td>
+                    <td>
+                        @item.StartTime
+                    </td>
+                    <td>
+                        @item.FinishTime
+                    </td>
+                    @if (item.Venue.Length > 15)
+                    {
+                        <td>@item.Venue.Substring(0,15)...</td>
+                    }
+                    else
+                    {
+                        <td>@item.Venue</td>
+                    }
+
+                    <td>
+                        <a asp-controller="event" asp-action="edit" asp-route-id="@item.Id" >
+                            <i style="font-size:30px;" class="fas fa-edit"></i>
+                        </a>
+                        <a asp-controller="event" asp-action="delete" asp-route-id="@item.Id"  class="delete-item">
+                            <i style="font-size:30px;" class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+                    <td><a asp-controller="event" asp-action="comments" asp-route-EventId="@item.Id" ><i class="fas fa-comment" style="font-size:30px;"></i>Comments </a> </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+    <div class="row justify-content-center mt-4">
+        <nav aria-label="...">
+            <ul class="pagination" style="justify-content:center">
+
+                <li class="page-item @(ViewBag.Currentpage == 1 ? "disabled" : "")">
+                    <a class="page-link" asp-controller="event" asp-action="index" asp-route-page="@(ViewBag.CurrentPage-1)">Previous</a>
+                </li>
+
+                @for (int i = 1; i <= ViewBag.TotalPage; i++)
+                {
+                    <li class="page-item  @(ViewBag.CurrentPage == i ? "active" : "")" style="pointer-events: @(ViewBag.CurrentPage == i ? "none" : "")"><a class="page-link" asp-controller="event" asp-action="index" asp-route-page="@i">@i</a></li>
+                }
+
+                <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPage ? "disabled" : "")">
+                    <a class="page-link" asp-controller="event" asp-action="index" asp-route-page="@(ViewBag.CurrentPage +1)">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+@section Scripts{
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    $(".delete-item").click(function (e) {
+        e.preventDefault()
+        console.log($(this).attr("href"))
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                var link = $(this).attr("href");
+                fetch(link).then(response => response.json()).then(data => {
+                    if (data.status == 200) {
+                        location.reload(true)
+                    } else {
+                        Swal.fire(
+                            'Not found!',
+                            'Your file can not be deleted.',
+                            'Failed'
+                        )
+                    }
+                });
+            }
+        })
+    })
+</script>
+}
+
+
+

@@ -1,8 +1,10 @@
+using EduHomeBackEndProject.Controllers;
 using EduHomeBackEndProject.DAL;
+using EduHomeBackEndProject.Models;
 using EduHomeBackEndProject.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -43,6 +45,18 @@ namespace EduHomeBackEndProject
                 ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore,
             };
             services.AddHttpContextAccessor();
+            services.AddIdentity<AppUser, IdentityRole>(option =>
+            {
+                option.Password.RequireDigit = true;
+                option.Password.RequiredLength = 8;
+                option.Password.RequireNonAlphanumeric = false;
+                option.Password.RequireLowercase = false;
+                option.Password.RequireUppercase = false;
+
+                option.Lockout.MaxFailedAccessAttempts = 5;
+                option.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                option.Lockout.AllowedForNewUsers = true;
+            }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 
         }
 
@@ -63,7 +77,7 @@ namespace EduHomeBackEndProject
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseSession();
 
@@ -71,7 +85,7 @@ namespace EduHomeBackEndProject
             {
                 endpoints.MapControllerRoute(
                   name: "areas",
-                  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                  pattern: "{area:exists}/{controller=Account}/{action=Index}/{id?}"
                 );
             });
 

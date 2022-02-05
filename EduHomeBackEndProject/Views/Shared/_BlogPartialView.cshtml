@@ -1,0 +1,65 @@
+﻿@model List<Blog>
+@{
+    var controller = ViewContext.RouteData.Values["controller"].ToString();
+}
+@if (controller == "Blog")
+{
+    @foreach (Blog blog in Model)
+{
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="single-blog mb-60">
+            <div class="blog-img">
+                <a href="#"><img src="~/Assets/img/blog/@blog.Image" alt="blog"></a>
+                <div class="blog-hover">
+                    <i class="fa fa-link"></i>
+                </div>
+            </div>
+            <div class="blog-content">
+                <div class="blog-top">
+                    <p>By Alex  /  @blog.Date.ToString("MMMM dd,yyyy") /  <i class="fa fa-comments"></i> @blog.Comments.Count</p>
+                </div>
+                <div class="blog-bottom">
+                    <h2><a asp-controller="blog" asp-action="details" asp-route-id="@blog.Id">@if(blog.Title.Length>25){
+                                        @Html.Raw(blog.Title.Substring(0,18)+"...")
+                                    }
+                                    else{
+                                        @Html.Raw(blog.Title)
+                                    }</a></h2>
+                    <a asp-controller="blog" asp-action="details" asp-route-id="@blog.Id" >read more</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+}
+else if (controller == "Home")
+{
+    @foreach (Blog blog in Model)
+   {
+       <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="single-blog">
+                    <div class="blog-img">
+                        <a href="blog-details.html"><img src="~/Assets/img/blog/@blog.Image" alt="blog"></a>
+                        <div class="blog-hover">
+                            <a href="blog-details.html"><i class="fa fa-link"></i></a>
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-top">
+                            <p>By Alex  /  @blog.Date.ToString("MMMM dd,yyyy")  /  <i class="fa fa-comments-o"></i></p>
+                        </div>
+                        <div class="blog-bottom">
+                            <h2><a asp-controller="blog" asp-action="details" asp-route-id="@blog.Id">@if(blog.Title.Length>25){
+                                        @Html.Raw(blog.Title.Substring(0,18)+"...")
+                                    }
+                                    else
+                                        @Html.Raw(blog.Title)
+                                    }</a><i class="fa fa-comments"></i>@blog.Comments.Count</h2>
+                            <a asp-controller="blog" asp-action="details" asp-route-id="@blog.Id">read more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>   
+   }
+  
+}

@@ -12,11 +12,10 @@ namespace EduHomeBackEndProject.Models
         [Required]
         [StringLength(maximumLength:70)]
         public string CourseName { get; set; }
-        
+
         public string CourseImage { get; set; }
         
-        [StringLength(maximumLength:70)]
-        public string Icon { get; set; }
+        public DateTime Time { get; set; }
         [Required]
         [StringLength(maximumLength:500)]
         public string Description { get; set; }

@@ -1,0 +1,140 @@
+﻿@model List<Blog>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+
+    <div class="mt-2 d-flex" style="justify-content:flex-end">
+        <a asp-controller="blog" asp-action="create" class="btn btn-success btn-icon-text">
+            <i class="mdi mdi-upload btn-icon-prepend"></i>
+            Create
+        </a>
+    </div>
+    <table class="table table-dark mt-4">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    Blog image
+                </th>
+                <th>
+                    Title
+                </th>
+                <th>
+                    Date
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Settings
+                </th>
+                <th>
+                    comments
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Blog blog in Model)
+            {
+                <tr>
+                    <td>
+                        @blog.Id
+                    </td>
+                    <td>
+                        <img style="width:100px;height:100px;object-fit:contain" src="~/Assets/img/blog/@blog.Image" alt="blog image" />
+                    </td>
+                    <td>
+                        @blog.Title
+                    </td>
+                    <td>
+                        @blog.Date
+                    </td>
+                     @if (blog.Description.Length > 25)
+                {
+                    <td>
+                        @blog.Description.Substring(0, 25)...
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @blog.Description
+                    </td>
+                }
+                    <td>
+                        <a asp-controller="blog" asp-action="edit" asp-route-id="@blog.Id" style="font-size:30;">
+                            <i style="font-size:30px;" class="fas fa-edit"></i>
+                            
+                        </a>
+                        <a asp-controller="blog" asp-action="delete" asp-route-id="@blog.Id"  class="delete-item">
+                            <i style="font-size:30px;" class="fas fa-trash-alt"></i>
+                           
+                        </a>
+                    </td>
+                    <td><a asp-controller="blog" asp-action="comments" asp-route-blogId="@blog.Id" ><i class="fas fa-comment" style="font-size:30px;"></i> </a> </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+    <div class="row justify-content-center mt-4">
+        <nav aria-label="...">
+            <ul class="pagination" style="justify-content:center">
+
+                <li class="page-item @(ViewBag.Currentpage == 1 ? "disabled" : "")">
+                    <a class="page-link" asp-controller="blog" asp-action="index" asp-route-page="@(ViewBag.CurrentPage-1)">Previous</a>
+                </li>
+
+                @for (int i = 1; i <= ViewBag.TotalPage; i++)
+                {
+                    <li class="page-item  @(ViewBag.CurrentPage == i ? "active" : "")" style="pointer-events: @(ViewBag.CurrentPage == i ? "none" : "")"><a class="page-link" asp-controller="blog" asp-action="index" asp-route-page="@i">@i</a></li>
+                }
+
+                <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPage ? "disabled" : "")">
+                    <a class="page-link" asp-controller="blog" asp-action="index" asp-route-page="@(ViewBag.CurrentPage +1)">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+@section Scripts{
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    $(".delete-item").click(function (e) {
+        e.preventDefault()
+        console.log($(this).attr("href"))
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                var link = $(this).attr("href");
+                fetch(link).then(response => response.json()).then(data => {
+                    if (data.status == 200) {
+                        location.reload(true)
+                    } else {
+                        Swal.fire(
+                            'Not found!',
+                            'Your file can not be deleted.',
+                            'Failed'
+                        )
+                    }
+                }
+                );
+            }
+        })
+    })
+</script>
+}
+

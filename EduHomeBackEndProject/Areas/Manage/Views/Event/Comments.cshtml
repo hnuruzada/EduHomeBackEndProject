@@ -1,0 +1,78 @@
+﻿@model List<Comment>
+@{
+    ViewData["Title"] = "Comments";
+}
+<div class="container">
+    <table class="mt-3 table table-dark">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    User Name
+                </th>
+                <th>
+                    User Surname
+                </th>
+                <th>
+                    Text
+                </th>
+                <th>
+                    Created Date
+                </th>
+                <th>
+                    Status
+                </th>
+                <th>
+                    Settings
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var comment in Model)
+            {
+            <tr>
+                <td>@comment.Id</td>
+                <td>@comment.AppUser.Name</td>
+                <td>@comment.AppUser.Surname</td>
+                @if (@comment.Message.Length < 50)
+                {
+                    <td>@comment.Message</td>
+
+                }
+                else
+                {
+                    <td data-toggle="tooltip" data-placement="bottom" title="@comment.Message">@comment.Message.Substring(0,47) ...</td>
+                }
+                <td>@comment.Date.ToString("dd MMMM yyyy HH:m")</td>
+                <td>@comment.IsAccess</td>
+                <td>
+                    @if (comment.IsAccess)
+                    {
+                        <a asp-controller="course" asp-action="CommentStatusChange" asp-route-id="@comment.Id" class="btn btn-danger btn-icon-text">
+                            <i class="mdi mdi-alert btn-icon-prepend"></i>
+                            Reject
+                        </a>
+                    }
+                    else
+                    {
+                        <a asp-controller="event" asp-action="CommentStatusChange" asp-route-id="@comment.Id" class="btn btn-success btn-icon-text">
+                            <i class="mdi mdi-file-check btn-icon-append"></i>
+                            Accept
+                        </a>
+                    }
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@section Scripts{ 
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+
+}

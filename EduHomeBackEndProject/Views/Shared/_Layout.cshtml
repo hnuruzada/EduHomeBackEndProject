@@ -2,202 +2,219 @@
 
 <!doctype html>
 <html class="no-js" lang="en">
-    
+
 <!-- Mirrored from demo.devitems.com/eduhome/index-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 21 Jun 2020 19:37:50 GMT -->
 <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Eduhome - Educational HTML Template</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Eduhome - Educational HTML Template</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
-        <!-- Place favicon.ico in the root directory -->
-
-        <link rel="stylesheet" href="~/Assets/css/bootstrap.min.css">
-        <link rel="stylesheet" href="~/Assets/css/animate.css">
-        <link rel="stylesheet" href="~/Assets/css/meanmenu.css">
-        <link rel="stylesheet" href="~/Assets/css/magnific-popup.css">
-        <link rel="stylesheet" href="~/Assets/css/owl.carousel.min.css">
-        <link rel="stylesheet" href="~/Assets/css/font-awesome.min.css">
-        <link rel="stylesheet" href="~/Assets/css/et-line-icon.css">
-        <link rel="stylesheet" href="~/Assets/css/reset.css">
-        <link rel="stylesheet" href="~/Assets/css/ionicons.min.css">
-        <link rel="stylesheet" href="~/Assets/css/material-design-iconic-font.min.css">
-        <link rel="stylesheet" href="~/Assets/css/style.css">
-        <link rel="stylesheet" href="~/Assets/css/responsive.css">
-        <script src="~/Assets/js/vendor/modernizr-2.8.3.min.js"></script>
-    </head>
-    <body>
-        <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-
-        <!-- Header Area Start -->
-		<header class="top">
-		    <div class="header-top">
-		        <div class="container">
-		            <div class="row">
-		                <div class="col-md-8 col-sm-8 col-xs-12">
-		                    <div class="header-top-left">
-		                        <p>HAVE ANY QUESTION ?  </p>
-		                    </div>
-		                </div>
-		                <div class="col-md-4 col-sm-4 col-xs-12">
-		                    <div class="header-top-right text-right">
-		                        <ul>
-		                            <li><a href="login.html">login</a></li>
-		                            <li><a href="signup.html">signup</a></li>
-		                        </ul>
-		                    </div>
-		                </div>
-		            </div>
-		        </div>
-		    </div>
-			<div class="header-area two header-sticky">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-3 col-sm-3 col-xs-6">
-							<div class="logo">
-								<a asp-controller="home" asp-action="index"><img src="~/Assets/img/logo/@layoutService.GetSettingData().HeaderLogo" alt="eduhome" /></a>
-							</div>
-						</div>
-						<div class="col-md-9 col-sm-9 col-xs-6">
-                            <div class="content-wrapper text-right">
-                                <!-- Main Menu Start -->
-                                <div class="main-menu">
-                                    <nav>
-                                        <ul>
-                                            <li><a asp-controller="home" asp-action="index">Home</a>
-                                                
-                                            </li>
-                                            <li><a asp-controller="about" asp-action="index">About</a></li>
-                                            <li><a asp-controller="course" asp-action="index">courses</a>
-                                                
-                                            </li>
-                                            <li><a asp-controller="event" asp-action="index">event</a>
-                                                
-                                            </li>
-                                            <li class="hidden-sm"><a asp-controller="teacher" asp-action="index">teacher</a>
-                                                
-                                            </li>
-                                            <li><a asp-controller="blog" asp-action="index">blog</a>
-                                                
-                                            </li>
-                                            <li><a asp-controller="contact" asp-action="index">Contact</a></li>
-                                            <li><a asp-controller="buy" asp-action="index">Buy Now</a>
-                                        </ul>
-                                    </nav>
-                                </div>
-                                <!--Search Form Start-->
-                                <div class="search-btn">
-                                    <ul data-toggle="dropdown" class="header-search search-toggle">
-                                        <li class="search-menu">
-                                            <i class="fa fa-search"></i>
-                                        </li>
-                                    </ul>
-                                    <div class="search">
-                                        <div class="search-form">
-                                            <form id="search-form" action="#">
-                                                <input type="search" placeholder="Search here..." name="search" />
-                                                <button type="submit">
-                                                    <span><i class="fa fa-search"></i></span>
-                                                </button>
-                                            </form>                                
-                                        </div>
-                                    </div>
-                                </div>	
-                                <!--End of Search Form-->
-                                <!-- Main Menu End -->
-                            </div>
-						</div>
-                        <div class="col-xs-12">
-                            <div class="mobile-menu hidden-lg hidden-md hidden-sm"></div> 
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/Assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Assets/css/animate.css">
+    <link rel="stylesheet" href="~/Assets/css/meanmenu.css">
+    <link rel="stylesheet" href="~/Assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/Assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Assets/css/et-line-icon.css">
+    <link rel="stylesheet" href="~/Assets/css/reset.css">
+    <link rel="stylesheet" href="~/Assets/css/ionicons.min.css">
+    <link rel="stylesheet" href="~/Assets/css/material-design-iconic-font.min.css">
+    
+    @RenderSection("CSS",required:false)
+    
+    <link rel="stylesheet" href="~/Assets/css/style.css">
+    <link rel="stylesheet" href="~/Assets/css/responsive.css">
+    <script src="~/Assets/js/vendor/modernizr-2.8.3.min.js"></script>
+    
+</head>
+<body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <!-- Header Area Start -->
+    <header class="top">
+        <div class="header-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                        <div class="header-top-left">
+                            <p>HAVE ANY QUESTION ? @layoutService.GetSettingData().PhoneNumber1 </p>
                         </div>
-					</div>
-				</div>
-			</div>
-		</header>
-            @RenderBody()
-       <footer class="footer-area">
-            <div class="main-footer">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <div class="single-widget pr-60">
-                                <div class="footer-logo pb-25">
-                                    <a href="index.html"><img src="~/Assets/img/logo/footer-logo.png" alt="eduhome"></a>
-                                </div>
-                                <p>I must explain to you how all this mistaken idea of denoung pleure and praising pain was born and give you a coete account of the system. </p>
-                                <div class="footer-social">
-                                    <ul>
-                                        <li><a href="#"><i class="zmdi zmdi-facebook"></i></a></li>
-                                        <li><a href="#"><i class="zmdi zmdi-pinterest"></i></a></li>
-                                        <li><a href="#"><i class="zmdi zmdi-vimeo"></i></a></li>
-                                        <li><a href="#"><i class="zmdi zmdi-twitter"></i></a></li>
-                                    </ul>    
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6 col-xs-12">
-                            <div class="single-widget">
-                                <h3>information</h3>
-                                <ul>
-                                    <li><a href="#">addmission</a></li>
-                                    <li><a href="#">Academic Calender</a></li>
-                                    <li><a href="event.html">Event List</a></li>
-                                    <li><a href="#">Hostel &amp; Dinning</a></li>
-                                    <li><a href="#">TimeTable</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-2 col-sm-6 col-xs-12">
-                            <div class="single-widget">
-                                <h3>useful links</h3>
-                                <ul>
-                                    <li><a href="course.html">our courses</a></li>
-                                    <li><a href="about.html">about us</a></li>
-                                    <li><a href="teacher.html">teachers &amp; faculty</a></li>
-                                    <li><a href="#">teams &amp; conditions</a></li>
-                                    <li><a href="event.html">our events</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6 col-xs-12">
-                            <div class="single-widget">
-                                <h3>get in touch</h3>
-                                <p>Your address goes here, Street<br>City, Roadno 785 New York</p>
-                                <p>+880  548  986  898  87<br>+880  659  785  658  98</p>
-                                <p>info@eduhome.com<br>www.eduhome.com</p>
-                            </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div class="header-top-right text-right">
+                            <ul>
+                                @if(!(User.Identity.IsAuthenticated && User.IsInRole("Member")))
+                                {
+                                    <li><a asp-controller="account" asp-action="login">login</a></li>
+                                <li><a asp-controller="account" asp-action="register">register</a></li>
+                                }
+                                else{
+                                    <li><a asp-controller="account" asp-action="edit">@User.Identity.Name</a></li>
+                                <li><a asp-controller="account" asp-action="logout">logout</a></li>
+                                }
+                            </ul>
                         </div>
                     </div>
                 </div>
-            </div>   
-            <div class="footer-bottom text-center">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <p>Copyright © <a href="#" target="_blank">HasTech</a> 2017. All Right Reserved By Hastech.</p>
-                        </div> 
-                    </div>
-                </div>    
             </div>
-        </footer>
-        <!-- Footer End -->
+        </div>
+        <div class="header-area two header-sticky">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-3 col-xs-6">
+                        <div class="logo">
+                            <a asp-controller="home" asp-action="index"><img src="~/Assets/img/logo/@layoutService.GetSettingData().HeaderLogo" alt="eduhome" /></a>
+                        </div>
+                    </div>
+                    <div class="col-md-9 col-sm-9 col-xs-6">
+                        <div class="content-wrapper text-right">
+                            <!-- Main Menu Start -->
+                            <div class="main-menu">
+                                <nav>
+                                    <ul>
+                                        <li>
+                                            <a asp-controller="home" asp-action="index">Home</a>
 
-        <script src="~/Assets/js/vendor/jquery-1.12.0.min.js"></script>
-        <script src="~/Assets/js/bootstrap.min.js"></script>
-        <script src="~/Assets/js/jquery.meanmenu.js"></script>
-        <script src="~/Assets/js/jquery.magnific-popup.js"></script>
-        <script src="~/Assets/js/ajax-mail.js"></script>
-        <script src="~/Assets/js/owl.carousel.min.js"></script>
-        <script src="~/Assets/js/jquery.mb.YTPlayer.js"></script>
-        <script src="~/Assets/js/jquery.nicescroll.min.js"></script>
-        <script src="~/Assets/js/plugins.js"></script>
-        @RenderSection("Scripts",required:false)
-        <script src="~/Assets/js/main.js"></script>
-    </body>
+                                        </li>
+                                        <li><a asp-controller="about" asp-action="index">About</a></li>
+                                        <li>
+                                            <a asp-controller="course" asp-action="index">courses</a>
+
+                                        </li>
+                                        <li>
+                                            <a asp-controller="event" asp-action="index">event</a>
+
+                                        </li>
+                                        <li class="hidden-sm">
+                                            <a asp-controller="teacher" asp-action="index">teacher</a>
+
+                                        </li>
+                                        <li>
+                                            <a asp-controller="blog" asp-action="index">blog</a>
+
+                                        </li>
+                                        <li><a asp-controller="contact" asp-action="index">Contact</a></li>
+                                        <li><a asp-controller="buy" asp-action="index">Buy Now</a>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <!--Search Form Start-->
+                            <div class="search-btn">
+                                <ul data-toggle="dropdown" class="header-search search-toggle">
+                                    <li class="search-menu">
+                                        <i class="fa fa-search"></i>
+                                    </li>
+                                </ul>
+                                <div class="search">
+                                    <div class="search-form">
+                                        <form id="search-form" action="#">
+                                            <input type="search" placeholder="Search here..." name="search" />
+                                            <button type="submit">
+                                                <span><i class="fa fa-search"></i></span>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--End of Search Form-->
+                            <!-- Main Menu End -->
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="mobile-menu hidden-lg hidden-md hidden-sm"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    @RenderBody()
+    <footer class="footer-area">
+        <div class="main-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="single-widget pr-60">
+                            <div class="footer-logo pb-25">
+                                <a href="index.html"><img src="~/Assets/img/logo/@layoutService.GetSettingData().FooterLogo" alt="eduhome"></a>
+                            </div>
+                            <p>@Html.Raw(layoutService.GetSettingData().FooterDescription)</p>
+                            <div class="footer-social">
+                                <ul>
+
+                                    @foreach (FooterSocialMedia social in layoutService.GetSettingData().FooterSocialMedias)
+                                    {
+                                        <li><a href="@social.IconUrl">@Html.Raw(social.Icon)</a></li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="single-widget">
+                            <h3>information</h3>
+                            <ul>
+                                <li><a href="#">addmission</a></li>
+                                <li><a href="#">Academic Calender</a></li>
+                                <li><a href="event.html">Event List</a></li>
+                                <li><a href="#">Hostel &amp; Dinning</a></li>
+                                <li><a href="#">TimeTable</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-6 col-xs-12">
+                        <div class="single-widget">
+                            <h3>useful links</h3>
+                            <ul>
+                                <li><a href="course.html">our courses</a></li>
+                                <li><a href="about.html">about us</a></li>
+                                <li><a href="teacher.html">teachers &amp; faculty</a></li>
+                                <li><a href="#">teams &amp; conditions</a></li>
+                                <li><a href="event.html">our events</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="single-widget">
+                            <h3>get in touch</h3>
+                            <p>@Html.Raw(layoutService.GetSettingData().Address)</p>
+                            <p>@layoutService.GetSettingData().PhoneNumber1<br>@layoutService.GetSettingData().PhoneNumber2</p>
+                            <p>@layoutService.GetSettingData().Mail<br>@layoutService.GetSettingData().WebAddress</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p>Copyright © <a href="#" target="_blank">HasTech</a> 2017. All Right Reserved By Hastech.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer End -->
+
+    <script src="~/Assets/js/vendor/jquery-1.12.0.min.js"></script>
+    <script src="~/Assets/js/bootstrap.min.js"></script>
+    <script src="~/Assets/js/jquery.meanmenu.js"></script>
+    <script src="~/Assets/js/jquery.magnific-popup.js"></script>
+    <script src="~/Assets/js/ajax-mail.js"></script>
+    <script src="~/Assets/js/owl.carousel.min.js"></script>
+    <script src="~/Assets/js/jquery.mb.YTPlayer.js"></script>
+    <script src="~/Assets/js/jquery.nicescroll.min.js"></script>
+    <script src="~/Assets/js/plugins.js"></script>
+    @RenderSection("Scripts",required:false)
+    <script src="~/Assets/js/main.js"></script>
+</body>
 
 <!-- Mirrored from demo.devitems.com/eduhome/index-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 21 Jun 2020 19:41:25 GMT -->
 </html>

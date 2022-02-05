@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EduHomeBackEndProject.Models
 {
@@ -17,5 +19,9 @@ namespace EduHomeBackEndProject.Models
         public string Surname { get; set; }
         public List<SpeakerPosition> SpeakerPositions { get; set; }
         public List<EventSpeaker> EventSpeakers { get; set; }
+        [NotMapped]
+        public IFormFile ImageFile { get; set; }
+        [NotMapped]
+        public List<int> PositionIds { get; set; }
     }
 }
