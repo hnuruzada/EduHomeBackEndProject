@@ -16,15 +16,12 @@
             </div>
             <div class="blog-content">
                 <div class="blog-top">
-                    <p>By Alex  /  @blog.Date.ToString("MMMM dd,yyyy") /  <i class="fa fa-comments"></i> @blog.Comments.Count</p>
+                    <p>By Alex  /  @blog.Date.ToString("MMMM dd,yyyy") /  <i class="fa fa-comments-o"></i> @blog.Comments.Count</p>
                 </div>
                 <div class="blog-bottom">
-                    <h2><a asp-controller="blog" asp-action="details" asp-route-id="@blog.Id">@if(blog.Title.Length>25){
-                                        @Html.Raw(blog.Title.Substring(0,18)+"...")
-                                    }
-                                    else{
-                                        @Html.Raw(blog.Title)
-                                    }</a></h2>
+                    <h2><a asp-controller="blog" asp-action="details" asp-route-id="@blog.Id">
+                                        @blog.Title
+                                 </a></h2>
                     <a asp-controller="blog" asp-action="details" asp-route-id="@blog.Id" >read more</a>
                 </div>
             </div>
@@ -46,15 +43,12 @@ else if (controller == "Home")
                     </div>
                     <div class="blog-content">
                         <div class="blog-top">
-                            <p>By Alex  /  @blog.Date.ToString("MMMM dd,yyyy")  /  <i class="fa fa-comments-o"></i></p>
+                            <p>By Alex  /  @blog.Date.ToString("MMMM dd,yyyy")  /  <i class="fa fa-comments-o"></i>(@blog.Comments.Count)</p>
                         </div>
                         <div class="blog-bottom">
-                            <h2><a asp-controller="blog" asp-action="details" asp-route-id="@blog.Id">@if(blog.Title.Length>25){
-                                        @Html.Raw(blog.Title.Substring(0,18)+"...")
-                                    }
-                                    else
-                                        @Html.Raw(blog.Title)
-                                    }</a><i class="fa fa-comments"></i>@blog.Comments.Count</h2>
+                            <h2><a asp-controller="blog" asp-action="details" asp-route-id="@blog.Id">
+                                        @blog.Title
+                                    </a></h2>
                             <a asp-controller="blog" asp-action="details" asp-route-id="@blog.Id">read more</a>
                         </div>
                     </div>

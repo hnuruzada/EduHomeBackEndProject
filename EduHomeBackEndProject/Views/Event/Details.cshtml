@@ -151,7 +151,7 @@
                                     </a>
                                 </div>
                                 <div class="single-post-content">
-                                    <h4><a asp-controller="blog" asp-action="details" asp-route-id="@blog.Id">@Html.Raw(blog.Title.Substring(0,18))...</a></h4>
+                                    <h4><a asp-controller="blog" asp-action="details" asp-route-id="@blog.Id">@blog.Title</a></h4>
                                     <p>By Alex  / @blog.Date.ToString("MMMM dd,yyyy") </p>
                                 </div>
                             </div>

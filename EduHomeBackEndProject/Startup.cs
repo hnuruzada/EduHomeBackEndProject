@@ -47,6 +47,8 @@ namespace EduHomeBackEndProject
             services.AddHttpContextAccessor();
             services.AddIdentity<AppUser, IdentityRole>(option =>
             {
+                
+
                 option.Password.RequireDigit = true;
                 option.Password.RequiredLength = 8;
                 option.Password.RequireNonAlphanumeric = false;
@@ -56,6 +58,8 @@ namespace EduHomeBackEndProject
                 option.Lockout.MaxFailedAccessAttempts = 5;
                 option.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
                 option.Lockout.AllowedForNewUsers = true;
+                option.SignIn.RequireConfirmedEmail = true;
+                option.User.RequireUniqueEmail = true;
             }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 
         }
@@ -85,7 +89,7 @@ namespace EduHomeBackEndProject
             {
                 endpoints.MapControllerRoute(
                   name: "areas",
-                  pattern: "{area:exists}/{controller=Account}/{action=Index}/{id?}"
+                  pattern: "{area:exists}/{controller=account}/{action=login}/{id?}"
                 );
             });
 

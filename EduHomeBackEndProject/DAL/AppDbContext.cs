@@ -11,6 +11,7 @@ namespace EduHomeBackEndProject.DAL
         {
 
         }
+        public DbSet<Contact> Contacts { get; set; }
         public DbSet<HeaderSlider> HeaderSliders{ get; set; }
         public DbSet<Setting> Settings { get; set; }
         public DbSet<Blog> Blogs { get; set; }

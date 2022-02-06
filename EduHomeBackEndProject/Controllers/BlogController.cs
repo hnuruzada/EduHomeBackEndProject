@@ -24,41 +24,21 @@ namespace EduHomeBackEndProject.Controllers
         }
         public IActionResult Index(int page=1)
         {
-            
+            ViewBag.TotalPage = Math.Ceiling((decimal)_context.Blogs.Count() / 4);
+            ViewBag.CurrentPage = page;
             BlogVM blogVM = new BlogVM
             {
                 Blogs = _context.Blogs.Include(b=>b.Comments).Skip((page - 1) * 4).Take(4).ToList(),
                 
             };
-            ViewBag.TotalPage = Math.Ceiling((decimal)_context.Blogs.Count() / 4);
-            ViewBag.CurrentPage = page;
+           
             ViewBag.LastestBlogs = _context.Blogs.OrderByDescending(b => b.Date).Take(3).ToList();
 
 
 
             return View(blogVM);
         }
-        //[HttpGet]
-        //public async Task<IActionResult> Index(string searchString, int page = 1)
-        //{
-        //    ViewData["GetBlogs"] = searchString;
-        //    var blogQuery = from x in _context.Blogs select x;
-        //    if (!String.IsNullOrEmpty(searchString))
-        //    {
-        //        blogQuery = blogQuery.Where(x => x.Description.Contains(searchString));
-        //        return View(await blogQuery.AsNoTracking().ToListAsync());
-        //    }
-        //    else
-        //    {
-        //        ViewBag.PageCount = Decimal.Ceiling((decimal)_context.Blogs.Count() / 3);
-        //        ViewBag.page = page;
-
-        //        //List<BlogVM> blogs = _context.Blogs.Skip(3).ToList();
-
-        //        List<Blog> blogs1 = _context.Blogs.Skip((int)(page - 1) * 3).Take(3).ToList();
-        //        return View(blogs1);
-        //    }
-        //}
+        
         public IActionResult Details(int id) 
         {
             BlogDetailVM detailVM = new BlogDetailVM
@@ -108,6 +88,30 @@ namespace EduHomeBackEndProject.Controllers
 
             return PartialView("_BlogPartialView", blog);
         }
+        //[HttpGet]
+        //public IActionResult Index(string key)
+        //{
+        //    if (!string.IsNullOrEmpty(key))
+        //    {
+        //        BlogVM blogVMs = new BlogVM
+        //        {
+        //            Blogs = _context.Blogs.Include(b=>b.Comments).Where(f => f.Title.ToLower().Trim().Contains(key.ToLower().Trim())).ToList()
+        //        };
+        //        if (!blogVMs.Blogs.Any(f => f.Title.Contains(key)))
+        //        {
+        //            ModelState.AddModelError("", "No result");
+        //        }
+        //        return View(blogVMs);
+        //    }
+
+        //    BlogVM blogV = new BlogVM
+        //    {
+        //        Blogs = _context.Blogs.Include(b=>b.Comments).ToList()
+        //    };
+        //    ViewBag.LastestBlogs = _context.Blogs.Include(b=>b.Comments).OrderByDescending(b => b.Date).Take(3).ToList();
+
+        //    return View(blogV);
+        //}
 
     }
 }

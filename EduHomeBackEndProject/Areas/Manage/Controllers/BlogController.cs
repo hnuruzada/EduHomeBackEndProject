@@ -14,8 +14,9 @@ using System.Threading.Tasks;
 namespace EduHomeBackEndProject.Areas.Manage.Controllers
 {
     [Area("Manage")]
-    
-    
+
+    [Authorize(Roles = "SuperAdmin")]
+
     public class BlogController : Controller
     {
         private readonly AppDbContext _context;

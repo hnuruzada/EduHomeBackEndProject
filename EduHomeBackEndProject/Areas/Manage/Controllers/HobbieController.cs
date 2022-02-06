@@ -10,8 +10,8 @@ using System.Linq;
 namespace EduHomeBackEndProject.Areas.Manage.Controllers
 {
     [Area("Manage")]
-   
 
+    [Authorize(Roles = "SuperAdmin,Admin")]
     public class HobbieController : Controller
     {
         private readonly AppDbContext _context;

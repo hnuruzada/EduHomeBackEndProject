@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace EduHomeBackEndProject.Areas.Manage.Controllers
 {
     [Area("Manage")]
-   
+    [Authorize(Roles = "SuperAdmin,Admin")]
     public class AccountController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
@@ -22,12 +22,17 @@ namespace EduHomeBackEndProject.Areas.Manage.Controllers
             _userManager = userManager;
             _roleManager = roleManager;
             _signInResult = signInResult;
+           
         }
+        //[Authorize(Roles = "SuperAdmin,Admin")]
+
         public IActionResult Index()
         {
-            List<AppUser> user = _userManager.Users.Where(u => u.IsAdmin).ToList();
-            return View(user);
+            //List<AppUser> user = _userManager.Users.Where(u => u.IsAdmin).ToList();
+
+            return View();
         }
+
         public IActionResult Login()
         {
             return View();
@@ -37,28 +42,38 @@ namespace EduHomeBackEndProject.Areas.Manage.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginVM login)
         {
+            if (login.Username == null)
+            {
+                ModelState.AddModelError("", "name or pasword incorrect");
+                return View();
+            }
+            if (login.Password == null)
+            {
+                ModelState.AddModelError("", "name or pasword incorrect");
+                return View();
+            }
             if (!ModelState.IsValid) return View();
-
             AppUser user = await _userManager.FindByNameAsync(login.Username);
+
+            if (user.IsAdmin == false)
+            {
+                ModelState.AddModelError("", "Username or pasword incorrect");
+                return View();
+            }
 
             if (user == null)
             {
-                ModelState.AddModelError("", "Username or password is incorrect");
+                ModelState.AddModelError("", "username or pasword incorrect");
                 return View();
             }
-            if (!user.IsAdmin)
-            {
-                ModelState.AddModelError("", "Username or password is incorrect");
-                return View();
-            }
-
             Microsoft.AspNetCore.Identity.SignInResult result = await _signInResult.PasswordSignInAsync(user, login.Password, false, false);
             if (!result.Succeeded)
             {
-                ModelState.AddModelError("", "Username or password is incorrect");
+                ModelState.AddModelError("", "Username or pasword incorrect");
                 return View();
             }
-            return RedirectToAction("index", "dashboard");
+          
+            return RedirectToAction("index", "course");
 
         }
         public async Task<IActionResult> Logout()
@@ -77,15 +92,15 @@ namespace EduHomeBackEndProject.Areas.Manage.Controllers
         //{
         //    AppUser user = new AppUser
         //    {
-        //        UserName = "ahad",
-        //        Email = "ahad@gmail.com",
-        //        Name = "Ahad",
-        //        Surname = "Tagiyev"
+        //        UserName = "jamal",
+        //        Email = "jamalzeynalli@gmail.com",
+        //        Name = "Jamal",
+        //        Surname = "Zeynalli"
 
         //    };
 
-        //    await _userManager.CreateAsync(user, "ahad12345");
-        //    await _userManager.AddToRoleAsync(user, "SuperAdmin");
+        //    await _userManager.CreateAsync(user, "jamal12345");
+        //    await _userManager.AddToRoleAsync(user, "Admin");
 
         //}
     }

@@ -42,7 +42,7 @@
                                             <div class="login-toggle-btn">
                                                 <input type="checkbox" id="remember">
                                                 <label asp-for="RememberMe">Remember me</label>
-                                                <a href="#">Forgot Password?</a>
+                                                <a asp-action="forgotpassword" asp-controller="account">Forgot Password?</a>
                                             </div>
                                             <div class="text-center mt-4 font-weight-light">
                                     Don't have an account? <a asp-controller="account" asp-action="register" class="text-primary">Create</a>

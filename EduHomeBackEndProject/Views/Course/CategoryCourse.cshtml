@@ -1,0 +1,11 @@
+﻿
+@model List<Course>
+@{
+    ViewData["Title"] = "CategoryCourse";
+}
+
+<div class="course-area pt-150 pb-150">
+    <div class="container">
+        @await Html.PartialAsync("_CoursePartialView", Model)
+        </div>
+    </div>

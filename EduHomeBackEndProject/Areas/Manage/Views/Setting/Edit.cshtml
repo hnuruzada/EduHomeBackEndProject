@@ -13,15 +13,15 @@
                     <label style="margin-bottom:10px;  font-size:20px;" font-size:20px;" asp-for="@Model.HeaderLogoFile">Header Logo</label>
                     <input asp-for="@Model.HeaderLogoFile" accept="image/*" class="form-control">
                     <span class="mt-2 text text-danger" asp-validation-for="@Model.HeaderLogoFile"></span>
-                    <p style="margin-top:15px;">Exsist Logo</p>
+                    
                     <img style="margin-top:15px; display:block;" width="200" src="~/Assets/img/logo/@Model.HeaderLogo" />
                 </div>
 
                 <div class="col-md-6" margin-bottom:40px; ">
-                    <label style="margin-bottom:10px;  font-size:20px;" font-size:20px;" asp-for="@Model.FooterLogoFile">Footor logo Logo</label>
+                    <label style="margin-bottom:10px;  font-size:20px;" font-size:20px;" asp-for="@Model.FooterLogoFile">Footer logo Logo</label>
                     <input asp-for="@Model.FooterLogoFile" accept="image/*" class="form-control">
                     <span class="mt-2 text text-danger" asp-validation-for="@Model.FooterLogoFile"></span>
-                    <p style="margin-top:15px;">Exsist Footor Logo</p>
+                    
                     <img style="margin-top:15px; display:block;" width="200" src="~/assets/img/logo/@Model.FooterLogo" />
                 </div>
             </div>
@@ -29,7 +29,7 @@
                 <label style="margin-bottom:10px;  font-size:20px;" font-size:20px;" asp-for="@Model.AboutImgFile">Info Image</label>
                 <input asp-for="@Model.AboutImgFile" accept="image/*" class="form-control">
                 <span class="mt-2 text text-danger" asp-validation-for="@Model.AboutImgFile"></span>
-                <p style="margin-top:15px;">Exsist Info Image</p>
+                >
                 <img style="margin-top:15px; margin-bottom:30px; display:block;" width="200" src="~/assets/img/about/@Model.AboutContentImage" />
             </div>
             
@@ -72,7 +72,7 @@
                 <span class="mt-2 text text-danger" asp-validation-for="@Model.Mail"></span>
             </div>
             <div class="col-md-4 ">
-                <label asp-for="@Model.WebAddress">Webadres</label>
+                <label asp-for="@Model.WebAddress">Web address</label>
                 <input asp-for="@Model.WebAddress" type="text" class="form-control">
                 <span class="mt-2 text text-danger" asp-validation-for="@Model.WebAddress"></span>
             </div>

@@ -5,6 +5,16 @@
     ViewData["Title"] = "Home Page";
     var controller = ViewContext.RouteData.Values["controller"].ToString();
 }
+@if (TempData["Verify"] != null)
+{
+    <input type="hidden" id="verifyJS" />
+}
+
+
+@if (TempData["Verified"] != null)
+{
+    <input type="hidden" id="verifiedJS" />
+}
 
 <!-- Header Area End -->
 <!-- Background Area Start -->
@@ -201,3 +211,50 @@
         </div>
     </div>
 </div>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+           
+            if ($("#verifyJS").length) {
+                Command: toastr["success"]("Please verify your email")
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": false,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "2000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+            }
+            if ($("#verifiedJS").length) {
+                Command: toastr["success"]("Your email has been verified")
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": false,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "2000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+            }
+        })
+    </script>
+}

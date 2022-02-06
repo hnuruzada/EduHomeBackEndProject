@@ -181,6 +181,27 @@ namespace EduHomeBackEndProject.Migrations
                     b.ToTable("Comments");
                 });
 
+            modelBuilder.Entity("EduHomeBackEndProject.Models.Contact", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Contacts");
+                });
+
             modelBuilder.Entity("EduHomeBackEndProject.Models.Course", b =>
                 {
                     b.Property<int>("Id")

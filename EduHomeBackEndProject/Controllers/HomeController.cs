@@ -39,7 +39,22 @@ namespace EduHomeBackEndProject.Controllers
             return View(homeVM);
             
         }
+        [HttpGet]
+        public IActionResult Search(string keyword)
+        {
+            
 
-       
+            HomeVM homeV = new HomeVM
+            {
+                Courses = _context.Courses.Include(c => c.Category).Where(f => f.CourseName.ToLower().Trim().Contains(keyword.ToLower().Trim())).ToList(),
+                Events = _context.Events.Where(f => f.Title.ToLower().Trim().Contains(keyword.ToLower().Trim())).ToList(),
+                Blogs = _context.Blogs.Include(b => b.Comments).Where(f => f.Title.ToLower().Trim().Contains(keyword.ToLower().Trim())).ToList()
+            };
+            return View(homeV);
+
+
+        }
+
+
     }
 }
