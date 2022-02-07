@@ -22,33 +22,33 @@ namespace EduHomeBackEndProject.Controllers
             _context = context;
             _userManager = userManager;
         }
-        public IActionResult Index(int page=1)
+        public IActionResult Index(int page = 1)
         {
             ViewBag.TotalPage = Math.Ceiling((decimal)_context.Blogs.Count() / 4);
             ViewBag.CurrentPage = page;
             BlogVM blogVM = new BlogVM
             {
-                Blogs = _context.Blogs.Include(b=>b.Comments).Skip((page - 1) * 4).Take(4).ToList(),
-                
+                Blogs = _context.Blogs.Include(b => b.Comments).Skip((page - 1) * 4).Take(4).ToList(),
+
             };
-           
-            ViewBag.LastestBlogs = _context.Blogs.OrderByDescending(b => b.Date).Take(3).ToList();
+
+            ViewBag.LastestBlogs = _context.Blogs.Include(b=>b.Comments).OrderByDescending(b => b.Date).Take(3).ToList();
 
 
 
             return View(blogVM);
         }
-        
-        public IActionResult Details(int id) 
+
+        public IActionResult Details(int id)
         {
             BlogDetailVM detailVM = new BlogDetailVM
             {
-                Blog = _context.Blogs.Include(b=>b.Comments).ThenInclude(b=>b.AppUser).FirstOrDefault(b=>b.Id==id),
-                Comments = _context.Comments.Include(c=>c.Blog).Include(c=>c.AppUser).Where(c=>c.BlogId==id).ToList(),
+                Blog = _context.Blogs.Include(b => b.Comments).ThenInclude(b => b.AppUser).FirstOrDefault(b => b.Id == id),
+                Comments = _context.Comments.Include(c => c.Blog).Include(c => c.AppUser).Where(c => c.BlogId == id).ToList(),
             };
             ViewBag.LastestBlogs = _context.Blogs.OrderByDescending(b => b.Date).Take(3).ToList();
             return View(detailVM);
-        
+
         }
         [Authorize]
         [AutoValidateAntiforgeryToken]
@@ -61,11 +61,11 @@ namespace EduHomeBackEndProject.Controllers
             Comment cmnt = new Comment
             {
                 Message = comment.Message,
-              
+
                 BlogId = comment.BlogId,
                 Date = DateTime.Now,
                 AppUserId = user.Id,
-                 IsAccess = true,
+                IsAccess = true,
             };
             _context.Comments.Add(cmnt);
             _context.SaveChanges();
@@ -84,34 +84,35 @@ namespace EduHomeBackEndProject.Controllers
         }
         public IActionResult Search(string searching)
         {
-            List<Blog> blog = _context.Blogs.Where(f => f.Title.ToLower().Trim().Contains(searching.ToLower().Trim())).ToList();
+            List<Blog> blog = _context.Blogs.Include(b => b.Comments).Where(f => f.Title.ToLower().Trim().Contains(searching.ToLower().Trim())).ToList();
 
             return PartialView("_BlogPartialView", blog);
         }
-        //[HttpGet]
-        //public IActionResult Index(string key)
-        //{
-        //    if (!string.IsNullOrEmpty(key))
-        //    {
-        //        BlogVM blogVMs = new BlogVM
-        //        {
-        //            Blogs = _context.Blogs.Include(b=>b.Comments).Where(f => f.Title.ToLower().Trim().Contains(key.ToLower().Trim())).ToList()
-        //        };
-        //        if (!blogVMs.Blogs.Any(f => f.Title.Contains(key)))
-        //        {
-        //            ModelState.AddModelError("", "No result");
-        //        }
-        //        return View(blogVMs);
-        //    }
+        [HttpGet]
+        public IActionResult Index(string key)
+        {
+            if (!string.IsNullOrEmpty(key))
+            {
+                BlogVM blogVMs = new BlogVM
+                {
+                    Blogs = _context.Blogs.Include(b => b.Comments).Where(f => f.Title.ToLower().Trim().Contains(key.ToLower().Trim())).ToList()
+                };
+                if (!blogVMs.Blogs.Any(f => f.Title.Contains(key)))
+                {
+                    ModelState.AddModelError("", "No result");
+                }
+                return View(blogVMs);
+            }
 
-        //    BlogVM blogV = new BlogVM
-        //    {
-        //        Blogs = _context.Blogs.Include(b=>b.Comments).ToList()
-        //    };
-        //    ViewBag.LastestBlogs = _context.Blogs.Include(b=>b.Comments).OrderByDescending(b => b.Date).Take(3).ToList();
+            BlogVM blogV = new BlogVM
+            {
+                Blogs = _context.Blogs.Include(b => b.Comments).ToList()
+            };
+            ViewBag.LastestBlogs = _context.Blogs.Include(b => b.Comments).OrderByDescending(b => b.Date).Take(3).ToList();
 
-        //    return View(blogV);
-        //}
+            return View(blogV);
+        }
 
     }
 }
+

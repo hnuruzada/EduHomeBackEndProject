@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace EduHomeBackEndProject.Areas.Manage.Controllers
 {
     [Area("Manage")]
-    [Authorize(Roles = "SuperAdmin,Admin")]
+    
     public class AccountController : Controller
     {
         private readonly UserManager<AppUser> _userManager;

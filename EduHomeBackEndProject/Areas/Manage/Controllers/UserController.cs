@@ -16,10 +16,12 @@ namespace EduHomeBackEndProject.Areas.Manage.Controllers
     {
         private readonly AppDbContext _context;
         private readonly UserManager<AppUser> _userManager;
-        public UserController(UserManager<AppUser> userManager,AppDbContext context)
+        private readonly RoleManager<IdentityRole> _roleManager;
+        public UserController(UserManager<AppUser> userManager,AppDbContext context,RoleManager<IdentityRole> roleManager)
         {
             _context = context;
             _userManager = userManager;
+            _roleManager = roleManager;
              
         }
         public IActionResult Index(int page=1)
@@ -33,8 +35,24 @@ namespace EduHomeBackEndProject.Areas.Manage.Controllers
         public async Task<IActionResult> UserStatusChange(string id)
         {
             AppUser user = await _userManager.FindByIdAsync(id);
-           
-            user.IsAdmin = user.IsAdmin ? false : true;
+            if (user.IsAdmin)
+            {
+                user.IsAdmin = false;
+
+                var role = (await _userManager.GetRolesAsync(user))[0];
+                await _userManager.RemoveFromRoleAsync(user, role);
+                await _userManager.AddToRoleAsync(user, "Member");
+
+            }
+            else
+            {
+                user.IsAdmin = true;
+                var role = (await _userManager.GetRolesAsync(user))[0];
+
+                await _userManager.RemoveFromRoleAsync(user, role);
+                await _userManager.AddToRoleAsync(user, "Admin");
+            }
+            //user.IsAdmin = user.IsAdmin ? false : true;
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
         }

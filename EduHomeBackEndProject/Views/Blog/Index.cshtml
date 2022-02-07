@@ -3,6 +3,8 @@
     ViewData["Title"] = "Index";
 
     var controller = ViewContext.RouteData.Values["controller"].ToString();
+    List<Blog> Blogs = ViewBag.LastestBlogs;
+
 
 }
 
@@ -79,32 +81,7 @@
                             <h2>best<br> eductaion<br> theme</h2>
                         </div>
                     </div>
-                    <div class="single-blog-widget mb-50">
-                        <h3>latest post</h3>
-                        @foreach (Blog blog in ViewBag.LastestBlogs as List<Blog>)
-                        {
-                            <div class="single-post mb-30">
-                                <div class="single-post-img">
-                                    <a href="blog-details.html">
-                                        <img style="width:95px; height:84px;" src="~/Assets/img/blog/@blog.Image" alt="post">
-                                        <div class="blog-hover">
-                                            <i class="fa fa-link"></i>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="single-post-content">
-                                    <h4>
-                                        <a href="blog-details.html">
-                                            @blog.Title
-                                            
-                                        </a>
-                                    </h4>
-                                    <p>By Alex  / @blog.Date.ToString("MMMM dd,yyyy") </p>
-                                </div>
-                            </div>
-                        }
-
-                    </div>
+                    
 
                 </div>
             </div>
